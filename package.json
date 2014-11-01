@@ -1,0 +1,43 @@
+{
+  "name": "emoticon",
+  "version": "0.0.1",
+  "description": "Information regarding ASCII emoticons",
+  "license": "MIT",
+  "keywords": [
+    "emoticon",
+    "unicode",
+    "name",
+    "shortcode",
+    "tag",
+    "alias",
+    "name"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/emoticon.git"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "devDependencies": {
+    "eslint": "^0.9.0",
+    "gemoji": "^0.2.0",
+    "istanbul": "^0.3.0",
+    "jscs": "^1.7.0",
+    "markdown-table": "^0.1.0",
+    "mocha": "^2.0.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test.js",
+    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test.js",
+    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test.js",
+    "lint": "npm run-script lint-api && npm run-script lint-test && npm run-script lint-style",
+    "lint-api": "node_modules/.bin/eslint index.js",
+    "lint-test": "node_modules/.bin/eslint test.js --env mocha",
+    "lint-script": "node_modules/.bin/eslint script/build-data.js script/build-support.js",
+    "lint-style": "node_modules/.bin/jscs index.js script/build-data.js script/build-support.js test.js --reporter=inline",
+    "make": "npm run lint && npm run coverage",
+    "build-data": "node script/build-data.js",
+    "build-support": "node script/build-support.js",
+    "build": "npm run build-data && npm run build-support",
+    "prepublish": "npm run build"
+  }
+}

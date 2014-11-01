@@ -1,0 +1,22 @@
+{
+  "name": "emoticon",
+  "version": "0.0.1",
+  "description": "Information regarding ASCII emoticons",
+  "license": "MIT",
+  "keywords": [
+    "emoticon",
+    "unicode",
+    "name",
+    "shortcode",
+    "tag",
+    "alias",
+    "name"
+  ],
+  "repository": "wooorm/emoticon",
+  "scripts" : [
+    "index.js"
+  ],
+  "json": [
+    "data/emoticons.json"
+  ]
+}

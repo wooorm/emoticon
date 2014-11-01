@@ -1,0 +1,36 @@
+{
+  "name": "emoticon",
+  "main": "index.js",
+  "description": "Information regarding ASCII emoticons",
+  "license": "MIT",
+  "keywords": [
+    "emoticon",
+    "unicode",
+    "name",
+    "shortcode",
+    "tag",
+    "alias",
+    "name"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wooorm/emoticon.git"
+  },
+  "authors": [
+    "Titus Wormer <tituswormer@gmail.com>"
+  ],
+  "ignore": [
+    ".*",
+    "*.log",
+    "*.md",
+    "build/",
+    "components/",
+    "coverage/",
+    "data/emoji/",
+    "node_modules/",
+    "script/",
+    "test.js",
+    "component.json",
+    "package.json"
+  ]
+}

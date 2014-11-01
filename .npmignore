@@ -1,0 +1,14 @@
+.*
+*.log
+bower_components/
+build/
+components/
+coverage/
+data/emoji/
+node_modules/
+script/
+test.js
+bower.json
+component.json
+History.md
+Supported-Emoticons.md
