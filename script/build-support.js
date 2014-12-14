@@ -49,7 +49,7 @@ data = [
  * Write support.
  */
 
-fs.writeFileSync('Supported-Emoticons.md',
+fs.writeFileSync('Support.md',
     'Supported Emoticons:\n' +
     '=================\n' +
     '\n' +

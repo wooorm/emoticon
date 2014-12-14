@@ -76,7 +76,7 @@ Yields:
 
 ## Supported Emoticons
 
-See [Supported-Emoticons.md](Supported-Emoticons.md).
+See [Support.md](Support.md).
 
 ## License
 
