@@ -12,32 +12,44 @@
     "alias",
     "name"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/emoticon.git"
-  },
+  "repository": "wooorm/emoticon",
   "author": "Titus Wormer <tituswormer@gmail.com>",
+  "files": [
+    "index.js",
+    "data/emoticons.json"
+  ],
   "devDependencies": {
-    "eslint": "^0.10.0",
-    "gemoji": "^0.2.0",
+    "browserify": "^11.0.0",
+    "eslint": "^1.0.0",
+    "esmangle": "^1.0.0",
+    "gemoji": "^1.0.0",
     "istanbul": "^0.3.0",
-    "jscs": "^1.0.0",
-    "markdown-table": "^0.2.0",
-    "mocha": "^2.0.0"
+    "jscs": "^2.0.0",
+    "jscs-jsdoc": "^1.0.0",
+    "markdown-table": "^0.4.0",
+    "mdast": "^1.0.0",
+    "mdast-comment-config": "^1.0.0",
+    "mdast-github": "^1.0.0",
+    "mdast-lint": "^1.0.0",
+    "mdast-slug": "^1.0.0",
+    "mdast-validate-links": "^1.0.0",
+    "mocha": "^2.0.0",
+    "string-width": "^1.0.1"
   },
   "scripts": {
-    "test": "node_modules/.bin/_mocha --reporter spec --check-leaks -u exports test.js",
-    "test-travis": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --reporter spec --check-leaks -u exports test.js",
-    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -- test.js",
-    "lint-api": "node_modules/.bin/eslint index.js",
-    "lint-test": "node_modules/.bin/eslint test.js --env mocha",
-    "lint-script": "node_modules/.bin/eslint script/build-data.js script/build-support.js",
-    "lint-style": "node_modules/.bin/jscs index.js script/build-data.js script/build-support.js test.js --reporter=inline",
-    "lint": "npm run lint-api && npm run lint-test && npm run lint-style",
-    "make": "npm run lint && npm run coverage",
+    "test-api": "mocha --check-leaks test.js",
+    "test-coverage": "istanbul cover _mocha -- test.js",
+    "test-travis": "npm run test-coverage",
+    "test": "npm run test-api",
+    "lint-api": "eslint .",
+    "lint-style": "jscs --reporter inline .",
+    "lint": "npm run lint-api && npm run lint-style",
+    "make": "npm run lint && npm run test-coverage",
     "build-data": "node script/build-data.js",
-    "build-support": "node script/build-support.js",
-    "build": "npm run build-data && npm run build-support",
-    "prepublish": "npm run build"
+    "postbuild-data": "node script/build-support.js",
+    "bundle": "browserify index.js --no-builtins -s emoticon > emoticon.js",
+    "postbundle": "esmangle emoticon.js > emoticon.min.js",
+    "build-md": "mdast . --quiet",
+    "build": "npm run build-data && npm run bundle && npm run build-md"
   }
 }

@@ -1,36 +1,28 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module emoticon:script:data
+ * @fileoverview Transform data.
+ */
+
 'use strict';
 
-/**
+/* eslint-env node */
+/* eslint-disable no-console */
+
+/*
  * Dependencies.
  */
 
-var fs,
-    gemoji;
+var fs = require('fs');
+var gemoji = require('gemoji');
 
-fs = require('fs');
-gemoji = require('gemoji');
-
-/**
- * Blacklisted words to test emoji-descriptions against.
- */
-
-var blacklist;
-
-blacklist = new RegExp(
-    '\\b(' +
-        'cat|gesture|massage|person|dog|wolf|mouse|hamster|' +
-        'rabbit|frog|tiger|bear|pig|cow|monkey|horse|panda|' +
-        'dragon|sun|moon|shrimp|clock' +
-    ')\\b'
-);
-
-/**
+/*
  * List of common facial-parts.
  */
 
-var map;
-
-map = {
+var map = {
     'eyes-normal': [':', '='],
     'eyes-wink': ';',
     'eyes-closed': ['x', 'X'],
@@ -62,19 +54,13 @@ map = {
 /**
  * Flatten a list of facial parts.
  *
- * @param {Array.<string>} keys
+ * @param {Array.<string>} keys - Map of keys.
  * @return {Array.<string>} flattened keys.
  */
-
 function flatten(keys) {
-    var result,
-        index,
-        length;
-
-    result = [];
-
-    index = -1;
-    length = keys.length;
+    var result = [];
+    var index = -1;
+    var length = keys.length;
 
     while (++index < length) {
         if (keys[index] in map) {
@@ -89,77 +75,76 @@ function flatten(keys) {
     return result;
 }
 
-/**
+/*
  * Get the emoticon representation of emoticons.
  */
 
-var data;
+var data = fs
+    .readdirSync('data/emoji')
+    .filter(function (filename) {
+        return filename.charAt(0) !== '.';
+    }).map(function (filename) {
+        return filename.substr(0, filename.lastIndexOf('.'));
+    }).filter(function (name) {
+        if (!(name in gemoji.name)) {
+            console.log(
+                'Missing information for `' +
+                gemoji.emoji + '`, `' +
+                gemoji.name + '`'
+            );
 
-data = fs.readdirSync('data/emoji').filter(function (filename) {
-    return filename.charAt(0) !== '.';
-}).map(function (filename) {
-    return filename.substr(0, filename.lastIndexOf('.'));
-}).filter(function (name) {
-    if (!(name in gemoji.name)) {
-        console.log(
-            'Missing information for `' +
-            information.emoji + '`, `' +
-            information.name + '`'
-        );
+            return false;
+        }
 
-        return false;
-    }
+        return true;
+    }).map(function (name) {
+        return gemoji.name[name];
+    }).map(function (information) {
+        var emoticon;
+        var result;
 
-    return true;
-}).map(function (name) {
-    return gemoji.name[name];
-}).map(function (information) {
-    var emoticon,
-        result,
-        index;
+        try {
+            emoticon = require(
+                '../data/emoji/' + information.name + '.json'
+            );
+        } catch (exception) {
+            console.log(
+                'Missing information for `' +
+                information.emoji + '`, `' +
+                information.name + '`'
+            );
+        }
 
-    try {
-        emoticon = require(
-            '../data/emoji/' + information.name + '.json'
-        );
-    } catch (exception) {
-        console.log(
-            'Missing information for `' +
-            information.emoji + '`, `' +
-            information.name + '`'
-        );
-    }
-
-    emoticon = emoticon.map(function (key) {
-        return flatten([key]);
-    });
-
-    while (emoticon[1]) {
-        result = [];
-
-        emoticon[0].forEach(function (first) {
-            emoticon[1].forEach(function (second) {
-                result.push(first + second);
-            });
+        emoticon = emoticon.map(function (key) {
+            return flatten([key]);
         });
 
-        emoticon.shift();
+        while (emoticon[1]) {
+            result = [];
 
-        emoticon[0] = result;
-    }
+            emoticon[0].forEach(function (first) {
+                emoticon[1].forEach(function (second) {
+                    result.push(first + second);
+                });
+            });
 
-    return {
-        'name': information.name,
-        'emoji': information.emoji,
-        'tags': information.tags,
-        'description': information.description,
-        'emoticons': result
-    };
-}).filter(function (information) {
-    return information.emoticons !== undefined;
-});
+            emoticon.shift();
 
-/**
+            emoticon[0] = result;
+        }
+
+        return {
+            'name': information.name,
+            'emoji': information.emoji,
+            'tags': information.tags,
+            'description': information.description,
+            'emoticons': result
+        };
+    }).filter(function (information) {
+        return information.emoticons !== undefined;
+    });
+
+/*
  * Remove some black-listed emoticons.
  */
 
@@ -185,13 +170,11 @@ data.forEach(function (information) {
     });
 });
 
-/**
+/*
  * Detect if emoticons are classified multiple times.
  */
 
-var known;
-
-known = {};
+var known = {};
 
 data.forEach(function (information) {
     information.emoticons.forEach(function (emoticon) {
@@ -207,20 +190,18 @@ data.forEach(function (information) {
     });
 });
 
-/**
+/*
  * Transform list of emoticons to map.
  */
 
-var emoticons;
-
-emoticons = {};
+var emoticons = {};
 
 data.forEach(function (information) {
     emoticons[information.name] = information;
 });
 
-/**
+/*
  * Write the emoticons.
  */
 
-fs.writeFileSync('data/emoticons.json', JSON.stringify(emoticons, null, 2));
+fs.writeFileSync('data/emoticons.json', JSON.stringify(emoticons, null, 2) + '\n');

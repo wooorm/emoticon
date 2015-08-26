@@ -1,6 +1,6 @@
 {
   "name": "emoticon",
-  "main": "index.js",
+  "main": "emoticon.js",
   "description": "Information regarding ASCII emoticons",
   "license": "MIT",
   "keywords": [
@@ -26,9 +26,12 @@
     "build/",
     "components/",
     "coverage/",
-    "data/emoji/",
+    "data/",
     "node_modules/",
     "script/",
+    "build.js",
+    "example.js",
+    "index.js",
     "test.js",
     "component.json",
     "package.json"

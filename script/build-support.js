@@ -1,68 +1,57 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module emoticon:script:data
+ * @fileoverview Build support data.
+ */
+
 'use strict';
 
-/**
+/* eslint-env node */
+
+/*
  * Dependencies.
  */
 
-var fs,
-    table,
-    emoticons,
-    gemoji;
+var fs = require('fs');
+var table = require('markdown-table');
+var width = require('string-width');
+var emoticons = require('../data/emoticons');
 
-fs = require('fs');
-table = require('markdown-table');
-emoticons = require('../data/emoticons');
-gemoji = require('gemoji');
-
-/**
- * Create an expression from all emoji.
- */
-
-var expression;
-
-expression = new RegExp(Object.keys(gemoji).join('|'), 'g');
-
-/**
+/*
  * Set up data.
  */
 
-var data;
+var data = [[
+    'Emoji',
+    'Name',
+    'Tags',
+    'Emoticons'
+]].concat(Object.keys(emoticons).map(function (name) {
+    var information = emoticons[name];
 
-data = [
-    ['Emoji', 'Name', 'Tags', 'Emoticons']
-].concat(
-    Object.keys(emoticons).map(function (name) {
-        var information;
+    return [
+        information.emoji,
+        name,
+        information.tags.join('; '),
+        '`' + information.emoticons.join('`; `').replace(/\|/g, '\\|') + '`'
+    ]
+}));
 
-        information = emoticons[name];
-
-        return [
-            information.emoji,
-            name,
-            information.tags.join('; '),
-            '`' + information.emoticons.join('`; `') + '`'
-        ]
-    })
-);
-
-/**
+/*
  * Write support.
  */
 
-fs.writeFileSync('Support.md',
-    'Supported Emoticons:\n' +
-    '=================\n' +
+fs.writeFileSync('support.md',
+    '# Supported emoticons\n' +
     '\n' +
-    'Note that you need a browser capable of viewing ' +
+    'Note that you need a browser capable of viewing\n' +
     'unicode-emoji to make sense of the first column!\n' +
     '\n' +
-
     table(data, {
-        'align': ['c', 'c', 'c', 'l'],
-        'stringLength': function (value) {
-            return value.replace(expression, '  ').length;
-        }
+        'align': 'c',
+        'stringLength': width
     }) +
-
     '\n'
 );

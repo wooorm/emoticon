@@ -1,77 +1,71 @@
-'use strict';
-
 /**
- * Cached methods.
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module emoticon
+ * @fileoverview Information regarding ASCII emoticons.
  */
 
-var has;
+'use strict';
 
-has = Object.prototype.hasOwnProperty;
+/* eslint-env commonjs */
 
-/**
+/*
  * Data.
  */
 
-var emoticons;
+var data = require('./data/emoticons.json');
 
-emoticons = require('./data/emoticons.json');
-
-/**
- * Create a dictionary to hold the emoticons by emoji.
+/*
+ * Dictionaries.
  */
 
-var emoji;
+var emoji = {};
+var text = {};
 
-emoji = {};
-
-/**
- * Create a dictionary to hold the emoticons by text
- * characters.
- */
-
-var text;
-
-text = {};
-
-/**
- * Transform all emoji.
- */
-
-var emoticon,
-    information,
-    index;
-
-for (emoticon in emoticons) {
-    /* istanbul ignore else */
-    if (has.call(emoticons, emoticon)) {
-        information = emoticons[emoticon];
-
-        /**
-         * Add information to `unicode` map.
-         */
-
-        emoji[information.emoji] = information;
-
-        /**
-         * Add information to `text` map.
-         */
-
-        index = information.emoticons.length;
-
-        while (index--) {
-            text[information.emoticons[index]] = information;
-        }
-    }
+var emoticons = {
+    'unicode': emoji,
+    'emoticon': text
 }
 
 /**
- * Expose the `text` dictionary (`text`) as `emoticon`.
+ * Transform an emoji.
+ *
+ * @param {string} emoticon - Unicode emoji to extend.
+ */
+function enhanceEmoticon(emoticon) {
+    var information = data[emoticon];
+    var index;
+
+    /**
+     * Add information to `unicode` map.
+     */
+
+    emoji[information.emoji] = information;
+
+    /**
+     * Add information to `text` map.
+     */
+
+    index = information.emoticons.length;
+
+    while (index--) {
+        text[information.emoticons[index]] = information;
+    }
+}
+
+/*
+ * Transform all emoticons.
  */
 
-exports.emoticon = text;
+var emoticon;
 
-/**
- * Expose the `unicode` dictionary (`emoji`) as `unicode`.
+for (emoticon in data) {
+    enhanceEmoticon(emoticon);
+}
+
+/*
+ * Expose.
  */
 
-exports.unicode = emoji;
+module.exports = emoticons;

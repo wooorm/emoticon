@@ -13,10 +13,8 @@
     "name"
   ],
   "repository": "wooorm/emoticon",
-  "scripts" : [
-    "index.js"
-  ],
-  "json": [
+  "scripts": [
+    "index.js",
     "data/emoticons.json"
   ]
 }
