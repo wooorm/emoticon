@@ -1,4 +1,4 @@
-# emoticon [![Build Status][travis-badge]][travis]
+# emoticon [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
 Info on ASCII emoticons.  :p
 
@@ -71,3 +71,7 @@ See [support.md][support].
 [author]: http://wooorm.com
 
 [support]: support.md
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/emoticon.svg
+
+[codecov]: https://codecov.io/github/wooorm/emoticon
