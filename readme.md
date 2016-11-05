@@ -1,79 +1,73 @@
-# emoticon [![Build Status](https://img.shields.io/travis/wooorm/emoticon.svg)](https://travis-ci.org/wooorm/emoticon) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/emoticon.svg)](https://codecov.io/github/wooorm/emoticon)
+# emoticon [![Build Status][travis-badge]][travis]
 
-Accessible Information regarding ASCII emoticons. :p
+Info on ASCII emoticons.  :p
 
 ## Installation
 
-[npm](https://docs.npmjs.com/cli/install):
+[npm][]:
 
 ```bash
 npm install emoticon
 ```
-
-**emoticon** is also available for [bower](http://bower.io/#install-packages),
-[component](https://github.com/componentjs/component), and
-[duo](http://duojs.org/#getting-started), and as an AMD, CommonJS, and globals
-module, [uncompressed](emoticon.js) and [compressed](emoticon.min.js).
 
 ## Usage
 
 ```javascript
 var emoticon = require('emoticon');
 
-emoticon.emoticon['<3'];
+console.log(emoticon.slice(0, 3));
 ```
 
 Yields:
-
-```json
-{
-  "name": "heart",
-  "emoji": "❤️",
-  "tags": ["love"],
-  "description": "heavy black heart",
-  "emoticons": [
-    "<3"
-  ]
-}
-```
-
-### By unicode emoji
 
 ```js
-emoticon.unicode['👨'];
+[ { name: 'angry',
+    emoji: '😠',
+    tags: [ 'mad', 'annoyed' ],
+    description: 'angry face',
+    emoticons: [ '>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-[' ] },
+  { name: 'blush',
+    emoji: '😊',
+    tags: [ 'proud' ],
+    description: 'smiling face with smiling eyes',
+    emoticons:
+     [ ':")',
+       ':"]',
+       ':"D',
+       ':-")',
+       ':-"]',
+       ':-"D',
+       '=")',
+       '="]',
+       '="D',
+       '=-")',
+       '=-"]',
+       '=-"D' ] },
+  { name: 'broken_heart',
+    emoji: '💔',
+    tags: [],
+    description: 'broken heart',
+    emoticons: [ '<\\3', '</3' ] } ]
 ```
 
-Yields:
+## Support
 
-```json
-{
-  "name": "man",
-  "emoji": "👨",
-  "tags": [
-    "mustache",
-    "father",
-    "dad"
-  ],
-  "description": "man",
-  "emoticons": [
-    ":3",
-    ":-3",
-    "=3",
-    "=-3",
-    ";3",
-    ";-3",
-    "x3",
-    "x-3",
-    "X3",
-    "X-3"
-  ]
-}
-```
-
-## Supported emoticon
-
-See [support.md](support.md).
+See [support.md][support].
 
 ## License
 
-[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/wooorm/emoticon.svg
+
+[travis]: https://travis-ci.org/wooorm/emoticon
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[license]: LICENSE
+
+[author]: http://wooorm.com
+
+[support]: support.md

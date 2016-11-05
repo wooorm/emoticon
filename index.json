@@ -1,6 +1,5 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.emoticon = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports={
-  "angry": {
+[
+  {
     "name": "angry",
     "emoji": "😠",
     "tags": [
@@ -19,7 +18,7 @@ module.exports={
       ">=-["
     ]
   },
-  "blush": {
+  {
     "name": "blush",
     "emoji": "😊",
     "tags": [
@@ -41,7 +40,7 @@ module.exports={
       "=-\"D"
     ]
   },
-  "broken_heart": {
+  {
     "name": "broken_heart",
     "emoji": "💔",
     "tags": [],
@@ -51,7 +50,7 @@ module.exports={
       "</3"
     ]
   },
-  "confused": {
+  {
     "name": "confused",
     "emoji": "😕",
     "tags": [],
@@ -67,7 +66,7 @@ module.exports={
       "=-\\"
     ]
   },
-  "cry": {
+  {
     "name": "cry",
     "emoji": "😢",
     "tags": [
@@ -102,7 +101,7 @@ module.exports={
       "='-|"
     ]
   },
-  "frowning": {
+  {
     "name": "frowning",
     "emoji": "😦",
     "tags": [],
@@ -118,7 +117,7 @@ module.exports={
       "=-["
     ]
   },
-  "heart": {
+  {
     "name": "heart",
     "emoji": "❤️",
     "tags": [
@@ -129,7 +128,7 @@ module.exports={
       "<3"
     ]
   },
-  "imp": {
+  {
     "name": "imp",
     "emoji": "👿",
     "tags": [
@@ -150,7 +149,7 @@ module.exports={
       "]=-["
     ]
   },
-  "innocent": {
+  {
     "name": "innocent",
     "emoji": "😇",
     "tags": [
@@ -196,7 +195,7 @@ module.exports={
       "0=-D"
     ]
   },
-  "joy": {
+  {
     "name": "joy",
     "emoji": "😂",
     "tags": [
@@ -230,7 +229,7 @@ module.exports={
       "='-D"
     ]
   },
-  "kissing": {
+  {
     "name": "kissing",
     "emoji": "😗",
     "tags": [],
@@ -242,7 +241,7 @@ module.exports={
       "=-*"
     ]
   },
-  "laughing": {
+  {
     "name": "laughing",
     "emoji": "😆",
     "tags": [
@@ -264,7 +263,7 @@ module.exports={
       "X-D"
     ]
   },
-  "man": {
+  {
     "name": "man",
     "emoji": "👨",
     "tags": [
@@ -286,7 +285,7 @@ module.exports={
       "X-3"
     ]
   },
-  "neutral_face": {
+  {
     "name": "neutral_face",
     "emoji": "😐",
     "tags": [
@@ -300,7 +299,7 @@ module.exports={
       "=-|"
     ]
   },
-  "no_mouth": {
+  {
     "name": "no_mouth",
     "emoji": "😶",
     "tags": [
@@ -312,7 +311,7 @@ module.exports={
       ":-"
     ]
   },
-  "open_mouth": {
+  {
     "name": "open_mouth",
     "emoji": "😮",
     "tags": [
@@ -336,7 +335,7 @@ module.exports={
       "=-0"
     ]
   },
-  "rage": {
+  {
     "name": "rage",
     "emoji": "😡",
     "tags": [
@@ -350,7 +349,7 @@ module.exports={
       "=-@"
     ]
   },
-  "smile": {
+  {
     "name": "smile",
     "emoji": "😄",
     "tags": [
@@ -366,7 +365,7 @@ module.exports={
       "=-D"
     ]
   },
-  "smiley": {
+  {
     "name": "smiley",
     "emoji": "😃",
     "tags": [
@@ -386,7 +385,7 @@ module.exports={
       "=-]"
     ]
   },
-  "smiling_imp": {
+  {
     "name": "smiling_imp",
     "emoji": "😈",
     "tags": [
@@ -410,7 +409,7 @@ module.exports={
       "]=-D"
     ]
   },
-  "sob": {
+  {
     "name": "sob",
     "emoji": "😭",
     "tags": [
@@ -438,7 +437,7 @@ module.exports={
       "=',-["
     ]
   },
-  "stuck_out_tongue": {
+  {
     "name": "stuck_out_tongue",
     "emoji": "😛",
     "tags": [],
@@ -458,7 +457,7 @@ module.exports={
       "=-d"
     ]
   },
-  "stuck_out_tongue_closed_eyes": {
+  {
     "name": "stuck_out_tongue_closed_eyes",
     "emoji": "😝",
     "tags": [
@@ -477,7 +476,7 @@ module.exports={
       "X-d"
     ]
   },
-  "stuck_out_tongue_winking_eye": {
+  {
     "name": "stuck_out_tongue_winking_eye",
     "emoji": "😜",
     "tags": [
@@ -494,7 +493,7 @@ module.exports={
       ";-d"
     ]
   },
-  "sunglasses": {
+  {
     "name": "sunglasses",
     "emoji": "😎",
     "tags": [
@@ -515,7 +514,7 @@ module.exports={
       "B-D"
     ]
   },
-  "sweat": {
+  {
     "name": "sweat",
     "emoji": "😓",
     "tags": [],
@@ -539,7 +538,7 @@ module.exports={
       "'=-["
     ]
   },
-  "sweat_smile": {
+  {
     "name": "sweat_smile",
     "emoji": "😅",
     "tags": [
@@ -573,7 +572,7 @@ module.exports={
       "'=-D"
     ]
   },
-  "unamused": {
+  {
     "name": "unamused",
     "emoji": "😒",
     "tags": [
@@ -603,7 +602,7 @@ module.exports={
       "=-Z"
     ]
   },
-  "wink": {
+  {
     "name": "wink",
     "emoji": "😉",
     "tags": [
@@ -619,80 +618,4 @@ module.exports={
       ";-D"
     ]
   }
-}
-
-},{}],2:[function(require,module,exports){
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module emoticon
- * @fileoverview Information regarding ASCII emoticons.
- */
-
-'use strict';
-
-/* eslint-env commonjs */
-
-/*
- * Data.
- */
-
-var data = require('./data/emoticons.json');
-
-/*
- * Dictionaries.
- */
-
-var emoji = {};
-var text = {};
-
-var emoticons = {
-    'unicode': emoji,
-    'emoticon': text
-}
-
-/**
- * Transform an emoji.
- *
- * @param {string} emoticon - Unicode emoji to extend.
- */
-function enhanceEmoticon(emoticon) {
-    var information = data[emoticon];
-    var index;
-
-    /**
-     * Add information to `unicode` map.
-     */
-
-    emoji[information.emoji] = information;
-
-    /**
-     * Add information to `text` map.
-     */
-
-    index = information.emoticons.length;
-
-    while (index--) {
-        text[information.emoticons[index]] = information;
-    }
-}
-
-/*
- * Transform all emoticons.
- */
-
-var emoticon;
-
-for (emoticon in data) {
-    enhanceEmoticon(emoticon);
-}
-
-/*
- * Expose.
- */
-
-module.exports = emoticons;
-
-},{"./data/emoticons.json":1}]},{},[2])(2)
-});
+]

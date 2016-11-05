@@ -1,7 +1,7 @@
 {
   "name": "emoticon",
   "version": "1.0.0",
-  "description": "Information regarding ASCII emoticons",
+  "description": "Info on ASCII emoticons",
   "license": "MIT",
   "keywords": [
     "emoticon",
@@ -12,44 +12,47 @@
     "alias",
     "name"
   ],
-  "repository": "wooorm/emoticon",
-  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "repository": "https://github.com/wooorm/emoticon",
+  "bugs": "https://github.com/wooorm/emoticon/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "main": "index.json",
   "files": [
-    "index.js",
-    "data/emoticons.json"
+    "index.json"
   ],
   "devDependencies": {
-    "browserify": "^11.0.0",
-    "eslint": "^1.0.0",
+    "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
-    "gemoji": "^1.0.0",
-    "istanbul": "^0.3.0",
-    "jscs": "^2.0.0",
-    "jscs-jsdoc": "^1.0.0",
-    "markdown-table": "^0.4.0",
-    "mdast": "^1.0.0",
-    "mdast-comment-config": "^1.0.0",
-    "mdast-github": "^1.0.0",
-    "mdast-lint": "^1.0.0",
-    "mdast-slug": "^1.0.0",
-    "mdast-validate-links": "^1.0.0",
-    "mocha": "^2.0.0",
-    "string-width": "^1.0.1"
+    "gemoji": "^2.0.1",
+    "has": "^1.0.1",
+    "markdown-table": "^1.0.0",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "string-width": "^1.0.2",
+    "tape": "^4.6.0",
+    "xo": "^0.17.0"
   },
   "scripts": {
-    "test-api": "mocha --check-leaks test.js",
-    "test-coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "npm run test-coverage",
-    "test": "npm run test-api",
-    "lint-api": "eslint .",
-    "lint-style": "jscs --reporter inline .",
-    "lint": "npm run lint-api && npm run lint-style",
-    "make": "npm run lint && npm run test-coverage",
-    "build-data": "node script/build-data.js",
-    "postbuild-data": "node script/build-support.js",
-    "bundle": "browserify index.js --no-builtins -s emoticon > emoticon.js",
-    "postbundle": "esmangle emoticon.js > emoticon.min.js",
-    "build-md": "mdast . --quiet",
-    "build": "npm run build-data && npm run bundle && npm run build-md"
+    "build-md": "remark readme.md --quiet --frail",
+    "build-data": "node script/build-data",
+    "build-support": "node script/build-support",
+    "build-bundle": "browserify index.json --bare -s emoticon > emoticon.js",
+    "build-mangle": "esmangle emoticon.js > emoticon.min.js",
+    "build": "npm run build-data && npm run build-support && npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test": "npm run build && npm run lint && npm run test-api"
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "emoticon.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "presets": "wooorm"
   }
 }

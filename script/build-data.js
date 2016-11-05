@@ -1,207 +1,113 @@
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module emoticon:script:data
- * @fileoverview Transform data.
- */
-
 'use strict';
 
-/* eslint-env node */
-/* eslint-disable no-console */
-
-/*
- * Dependencies.
- */
-
+/* Dependencies. */
 var fs = require('fs');
 var gemoji = require('gemoji');
+var has = require('has');
+var schema = require('../schema');
+var alias = require('../alias');
 
-/*
- * List of common facial-parts.
- */
-
-var map = {
-    'eyes-normal': [':', '='],
-    'eyes-wink': ';',
-    'eyes-closed': ['x', 'X'],
-    'eyes-glasses': ['8', 'B'],
-    'eyes': ['eyes-normal', 'eyes-wink', 'eyes-closed'],
-    'nose': '-',
-    'nose-optional': ['', 'nose'],
-    'mouth-positive-normal': [')', ']'],
-    'mouth-positive-very': 'D',
-    'mouth-positive': ['mouth-positive-normal', 'mouth-positive-very'],
-    'mouth-negative-normal': ['(', '['],
-    'mouth-negative': ['mouth-negative-normal'],
-    'mouth-neutral': '|',
-    'mouth-not-positive': ['mouth-negative', 'mouth-neutral'],
-    'mouth-not-negative': ['mouth-positive', 'mouth-neutral'],
-    'mouth-kissing': '*',
-    'mouth-open': ['o', 'O', '0'],
-    'mouth-angry': '@',
-    'mouth-tongue': ['p', 'P', 'd'],
-    'mouth-squiggly': ['$', 's', 'z', 'S', 'Z'],
-    'mouth-confused': ['/', '\\'],
-    'blush': '"',
-    'drop': [',', '\''],
-    'horns': ']',
-    'halo': ['o', 'O', '0'],
-    'moustache': '3'
-}
-
-/**
- * Flatten a list of facial parts.
- *
- * @param {Array.<string>} keys - Map of keys.
- * @return {Array.<string>} flattened keys.
- */
-function flatten(keys) {
-    var result = [];
-    var index = -1;
-    var length = keys.length;
-
-    while (++index < length) {
-        if (keys[index] in map) {
-            result = result.concat(flatten(map[keys[index]]));
-        } else if (Array.isArray(keys[index])) {
-            result = result.concat(keys[index]);
-        } else {
-            result.push(keys[index]);
-        }
+/* Get the emoticon representation of emoticons. */
+var data = Object.keys(schema)
+  .filter(function (name) {
+    if (!has(gemoji.name, name)) {
+      console.log('Missing info for `' + gemoji.emoji + '`, `' + gemoji.name + '`');
+      return false;
     }
 
-    return result;
-}
+    return true;
+  })
+  .map(function (name) {
+    return gemoji.name[name];
+  })
+  .map(function (info) {
+    var emoticon = schema[info.name];
+    var result;
 
-/*
- * Get the emoticon representation of emoticons.
- */
+    emoticon = emoticon.map(function (key) {
+      return flatten([key]);
+    });
 
-var data = fs
-    .readdirSync('data/emoji')
-    .filter(function (filename) {
-        return filename.charAt(0) !== '.';
-    }).map(function (filename) {
-        return filename.substr(0, filename.lastIndexOf('.'));
-    }).filter(function (name) {
-        if (!(name in gemoji.name)) {
-            console.log(
-                'Missing information for `' +
-                gemoji.emoji + '`, `' +
-                gemoji.name + '`'
-            );
+    while (emoticon[1]) {
+      result = unpack(emoticon);
+      emoticon.shift();
+      emoticon[0] = result;
+    }
 
-            return false;
-        }
+    return {
+      name: info.name,
+      emoji: info.emoji,
+      tags: info.tags,
+      description: info.description,
+      emoticons: result
+    };
 
-        return true;
-    }).map(function (name) {
-        return gemoji.name[name];
-    }).map(function (information) {
-        var emoticon;
-        var result;
-
-        try {
-            emoticon = require(
-                '../data/emoji/' + information.name + '.json'
-            );
-        } catch (exception) {
-            console.log(
-                'Missing information for `' +
-                information.emoji + '`, `' +
-                information.name + '`'
-            );
-        }
-
-        emoticon = emoticon.map(function (key) {
-            return flatten([key]);
+    function unpack(val) {
+      var res = [];
+      val[0].forEach(function (first) {
+        val[1].forEach(function (second) {
+          res.push(first + second);
         });
+      });
+      return res;
+    }
+  })
+  .filter(function (info) {
+    return Boolean(info.emoticons);
+  });
 
-        while (emoticon[1]) {
-            result = [];
+/* Remove some black-listed emoticons. */
+data.forEach(function (info) {
+  info.emoticons = info.emoticons.filter(filter);
 
-            emoticon[0].forEach(function (first) {
-                emoticon[1].forEach(function (second) {
-                    result.push(first + second);
-                });
-            });
+  function filter(emoticon) {
+    if (
+      (
+        /^[a-zA-Z]+$/.test(emoticon) &&
+        (emoticon.toUpperCase() === emoticon || emoticon.toLowerCase() === emoticon)
+      ) ||
+      /([\s\S])\1+/g.test(emoticon) ||
+      emoticon === '=-'
+    ) {
+      console.log('Removing dangerous/unused emoticon: ', emoticon);
+      return false;
+    }
 
-            emoticon.shift();
-
-            emoticon[0] = result;
-        }
-
-        return {
-            'name': information.name,
-            'emoji': information.emoji,
-            'tags': information.tags,
-            'description': information.description,
-            'emoticons': result
-        };
-    }).filter(function (information) {
-        return information.emoticons !== undefined;
-    });
-
-/*
- * Remove some black-listed emoticons.
- */
-
-data.forEach(function (information) {
-    information.emoticons = information.emoticons.filter(function (emoticon) {
-        if (
-            (
-                /^[a-zA-Z]+$/.test(emoticon) &&
-                (
-                    emoticon.toUpperCase() === emoticon ||
-                    emoticon.toLowerCase() === emoticon
-                )
-            ) ||
-            /([\s\S])\1+/g.test(emoticon) ||
-            emoticon === '=-'
-        ) {
-            console.log('Removing dangerous/unused emoticon: ', emoticon);
-
-            return false;
-        }
-
-        return true;
-    });
+    return true;
+  }
 });
 
-/*
- * Detect if emoticons are classified multiple times.
- */
-
+/* Detect if emoticons are classified multiple times. */
 var known = {};
 
-data.forEach(function (information) {
-    information.emoticons.forEach(function (emoticon) {
-        if (known.hasOwnProperty(emoticon)) {
-            console.log(
-                'Duplicate emoticon `' + emoticon +
-                '` in `' + information.name + '` and `' +
-                known[emoticon] + '`'
-            );
-        }
+data.forEach(function (info) {
+  info.emoticons.forEach(function (emoticon) {
+    if (has(known, emoticon)) {
+      console.log('Duplicate emoticon `' + emoticon + '` in `' + info.name + '` and `' + known[emoticon] + '`');
+    }
 
-        known[emoticon] = information.name;
-    });
+    known[emoticon] = info.name;
+  });
 });
 
-/*
- * Transform list of emoticons to map.
- */
+/* Write. */
+fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n');
 
-var emoticons = {};
+/* Flatten facial parts. */
+function flatten(keys) {
+  var result = [];
+  var index = -1;
+  var length = keys.length;
 
-data.forEach(function (information) {
-    emoticons[information.name] = information;
-});
+  while (++index < length) {
+    if (has(alias, keys[index])) {
+      result = result.concat(flatten(alias[keys[index]]));
+    } else if (Array.isArray(keys[index])) {
+      result = result.concat(keys[index]);
+    } else {
+      result.push(keys[index]);
+    }
+  }
 
-/*
- * Write the emoticons.
- */
-
-fs.writeFileSync('data/emoticons.json', JSON.stringify(emoticons, null, 2) + '\n');
+  return result;
+}
