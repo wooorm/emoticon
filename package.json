@@ -28,7 +28,7 @@
     "gemoji": "^4.0.0",
     "has": "^1.0.1",
     "markdown-table": "^1.0.0",
-    "remark-cli": "^2.0.0",
+    "remark-cli": "^3.0.0",
     "remark-preset-wooorm": "^1.0.0",
     "string-width": "^1.0.2",
     "tape": "^4.6.0",
