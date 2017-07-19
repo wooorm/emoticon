@@ -1,11 +1,9 @@
 'use strict';
 
-/* Dependencies. */
 var fs = require('fs');
 var table = require('markdown-table');
 var emoticons = require('..');
 
-/* Set up data. */
 var data = [[
   'Emoji',
   'Name',
@@ -20,7 +18,6 @@ var data = [[
   ];
 }));
 
-/* Write. */
 fs.writeFileSync('support.md',
   '# Supported emoticons\n' +
   '\n' +

@@ -1,6 +1,5 @@
 'use strict';
 
-/* Dependencies. */
 var fs = require('fs');
 var gemoji = require('gemoji');
 var has = require('has');
