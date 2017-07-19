@@ -3,7 +3,6 @@
 /* Dependencies. */
 var fs = require('fs');
 var table = require('markdown-table');
-var width = require('string-width');
 var emoticons = require('..');
 
 /* Set up data. */
@@ -30,7 +29,7 @@ fs.writeFileSync('support.md',
   '\n' +
   table(data, {
     align: 'c',
-    stringLength: width
+    pad: false
   }) +
   '\n'
 );

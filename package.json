@@ -29,13 +29,13 @@
     "has": "^1.0.1",
     "markdown-table": "^1.0.0",
     "remark-cli": "^3.0.0",
-    "remark-preset-wooorm": "^2.0.0",
-    "string-width": "^1.0.2",
+    "remark-lint-table-pipe-alignment": "^1.0.0",
+    "remark-preset-wooorm": "^3.0.0",
     "tape": "^4.6.0",
     "xo": "^0.18.0"
   },
   "scripts": {
-    "build-md": "remark readme.md -qfo",
+    "build-md": "remark . -qfo",
     "build-data": "node script/build-data",
     "build-support": "node script/build-support",
     "build-bundle": "browserify index.json --bare -s emoticon > emoticon.js",
@@ -53,6 +53,15 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "settings": {
+      "paddedTable": false
+    },
+    "plugins": [
+      "preset-wooorm",
+      [
+        "lint-table-pipe-alignment",
+        false
+      ]
+    ]
   }
 }
