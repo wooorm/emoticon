@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '7.0'
+- '8.0'
 sudo: false
 deploy:
   - provider: npm
@@ -19,4 +19,4 @@ deploy:
       - "emoticon.min.js"
     on:
       tags: true
-      node: '7.0'
+      node: '8.0'
