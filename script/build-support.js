@@ -17,14 +17,13 @@ var data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
 
 fs.writeFileSync(
   'support.md',
-  '# Supported emoticons\n' +
-    '\n' +
-    'Note that you need a browser capable of viewing\n' +
-    'unicode-emoji to make sense of the first column!\n' +
-    '\n' +
-    table(data, {
-      align: 'c',
-      pad: false
-    }) +
-    '\n'
+  [
+    '# Supported emoticons',
+    '',
+    'Note that you need a browser capable of viewing',
+    'unicode-emoji to make sense of the first column!',
+    '',
+    table(data, {align: 'c', pad: false}),
+    ''
+  ].join('\n')
 )

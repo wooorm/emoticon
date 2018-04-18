@@ -2,21 +2,21 @@
 
 var fs = require('fs')
 var gemoji = require('gemoji')
-var has = require('has')
 var schema = require('../schema')
 var alias = require('../alias')
+
+var own = {}.hasOwnProperty
 
 /* Get the emoticon representation of emoticons. */
 var data = Object.keys(schema)
   .filter(function(name) {
-    if (!has(gemoji.name, name)) {
-      console.log(
-        'Missing info for `' + gemoji.emoji + '`, `' + gemoji.name + '`'
-      )
-      return false
+    var has = own.call(gemoji.name, name)
+
+    if (!has) {
+      console.log('Missing info for `%s`, `%s`', gemoji.emoji, gemoji.name)
     }
 
-    return true
+    return has
   })
   .map(function(name) {
     return gemoji.name[name]
@@ -41,16 +41,6 @@ var data = Object.keys(schema)
       tags: info.tags,
       description: info.description,
       emoticons: result
-    }
-
-    function unpack(val) {
-      var res = []
-      val[0].forEach(function(first) {
-        val[1].forEach(function(second) {
-          res.push(first + second)
-        })
-      })
-      return res
     }
   })
   .filter(function(info) {
@@ -82,15 +72,12 @@ var known = {}
 
 data.forEach(function(info) {
   info.emoticons.forEach(function(emoticon) {
-    if (has(known, emoticon)) {
+    if (own.call(known, emoticon)) {
       console.log(
-        'Duplicate emoticon `' +
-          emoticon +
-          '` in `' +
-          info.name +
-          '` and `' +
-          known[emoticon] +
-          '`'
+        'Duplicate emoticon `%s` in `%s` and `%s`',
+        emoticon,
+        info.name,
+        known[emoticon]
       )
     }
 
@@ -101,6 +88,16 @@ data.forEach(function(info) {
 /* Write. */
 fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n')
 
+function unpack(val) {
+  var res = []
+  val[0].forEach(function(first) {
+    val[1].forEach(function(second) {
+      res.push(first + second)
+    })
+  })
+  return res
+}
+
 /* Flatten facial parts. */
 function flatten(keys) {
   var result = []
@@ -108,7 +105,7 @@ function flatten(keys) {
   var length = keys.length
 
   while (++index < length) {
-    if (has(alias, keys[index])) {
+    if (own.call(alias, keys[index])) {
       result = result.concat(flatten(alias[keys[index]]))
     } else if (Array.isArray(keys[index])) {
       result = result.concat(keys[index])

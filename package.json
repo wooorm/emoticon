@@ -26,7 +26,6 @@
     "browserify": "^16.0.0",
     "esmangle": "^1.0.0",
     "gemoji": "^4.0.0",
-    "has": "^1.0.1",
     "markdown-table": "^1.0.0",
     "remark-cli": "^5.0.0",
     "remark-lint-table-pipe-alignment": "^1.0.0",
