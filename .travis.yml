@@ -4,19 +4,12 @@ node_js:
 - '8.0'
 sudo: false
 deploy:
-  - provider: npm
-    email: tituswormer@gmail.com
-    api_key:
-      secure: UHsF+yqqKhc9OxuN+9cclx3u9imP+8BJ38zXQdKJWwQaaFpJcsWPPGLaCzkxIddxtOVpFo+I6umnR/43xrqCpsWMVbd9u4Tk0Sr4bjsbdAFd/FndjzZdmcUgNkCHyQEn9DU2PUHlv7eD7SLSzO+1hXnmkMkFIti1WScYoJbiTow=
-    on:
-      tags: true
-      node: '4.0'
-  - provider: releases
-    api_key:
-      secure: V5d7+reDV7FALlf4DQgJe+yXE12ySC0TCZbqbPzbDifCftWNnCceWJNdGkfrupbQ2+vtbwzjll9GSf3h6FkoM8kLebjTiv2uvmtJQDs3PvwMGb2fgjNonHmQextqys2uBYyZDucek/xHHPDafEAvptXX0IKtBnsBBcEdP0BihXI=
-    file:
-      - "emoticon.js"
-      - "emoticon.min.js"
-    on:
-      tags: true
-      node: '8.0'
+  provider: releases
+  api_key:
+    secure: V5d7+reDV7FALlf4DQgJe+yXE12ySC0TCZbqbPzbDifCftWNnCceWJNdGkfrupbQ2+vtbwzjll9GSf3h6FkoM8kLebjTiv2uvmtJQDs3PvwMGb2fgjNonHmQextqys2uBYyZDucek/xHHPDafEAvptXX0IKtBnsBBcEdP0BihXI=
+  file:
+    - "emoticon.js"
+    - "emoticon.min.js"
+  on:
+    tags: true
+    node: '8.0'
