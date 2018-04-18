@@ -3,3 +3,4 @@
 node_modules/
 emoticon.js
 emoticon.min.js
+yarn.lock
