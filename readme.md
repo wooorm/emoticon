@@ -13,9 +13,9 @@ npm install emoticon
 ## Usage
 
 ```javascript
-var emoticon = require('emoticon');
+var emoticon = require('emoticon')
 
-console.log(emoticon.slice(0, 3));
+console.log(emoticon.slice(0, 3))
 ```
 
 Yields:

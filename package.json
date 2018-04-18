@@ -35,26 +35,14 @@
     "xo": "^0.20.0"
   },
   "scripts": {
-    "build-md": "remark . -qfo",
-    "build-data": "node script/build-data",
+    "generate": "node script/build-data",
+    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
     "build-support": "node script/build-support",
     "build-bundle": "browserify index.json --bare -s emoticon > emoticon.js",
     "build-mangle": "esmangle emoticon.js > emoticon.min.js",
-    "build": "npm run build-data && npm run build-support && npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint": "xo",
+    "build": "npm run build-support && npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
-    "test": "npm run build && npm run lint && npm run test-api"
-  },
-  "xo": {
-    "space": true,
-    "esnext": false,
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off"
-    },
-    "ignores": [
-      "emoticon.js"
-    ]
+    "test": "npm run generate && npm run format && npm run build && npm run test-api"
   },
   "remarkConfig": {
     "settings": {
@@ -66,6 +54,25 @@
         "lint-table-pipe-alignment",
         false
       ]
+    ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false,
+    "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "ignore": [
+      "emotion.js"
     ]
   }
 }
