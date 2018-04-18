@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-- '4.0'
-- '8.0'
+- lts/boron
+- node
 sudo: false
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: V5d7+reDV7FALlf4DQgJe+yXE12ySC0TCZbqbPzbDifCftWNnCceWJNdGkfrupbQ2+vtbwzjll9GSf3h6FkoM8kLebjTiv2uvmtJQDs3PvwMGb2fgjNonHmQextqys2uBYyZDucek/xHHPDafEAvptXX0IKtBnsBBcEdP0BihXI=
   file:
@@ -12,4 +13,3 @@ deploy:
     - "emoticon.min.js"
   on:
     tags: true
-    node: '8.0'
