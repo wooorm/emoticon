@@ -12,7 +12,7 @@
     "alias",
     "name"
   ],
-  "repository": "https://github.com/wooorm/emoticon",
+  "repository": "wooorm/emoticon",
   "bugs": "https://github.com/wooorm/emoticon/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
