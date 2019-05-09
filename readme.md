@@ -68,6 +68,6 @@ See [support.md][support].
 
 [license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
 
 [support]: support.md
