@@ -1,4 +1,8 @@
-# emoticon [![Build Status][travis-badge]][travis]
+# emoticon
+
+[![Build][build-badge]][build]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
 
 Info on ASCII emoticons.  :p
 
@@ -60,9 +64,17 @@ See [support.md][support].
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/emoticon.svg
+[build-badge]: https://img.shields.io/travis/wooorm/emoticon.svg
 
-[travis]: https://travis-ci.org/wooorm/emoticon
+[build]: https://travis-ci.org/wooorm/emoticon
+
+[downloads-badge]: https://img.shields.io/npm/dm/emoticon.svg
+
+[downloads]: https://www.npmjs.com/package/emoticon
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/emoticon.svg
+
+[size]: https://bundlephobia.com/result?p=emoticon
 
 [npm]: https://docs.npmjs.com/cli/install
 
