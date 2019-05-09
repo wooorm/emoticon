@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- lts/boron
+- lts/dubnium
 - node
 sudo: false
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: V5d7+reDV7FALlf4DQgJe+yXE12ySC0TCZbqbPzbDifCftWNnCceWJNdGkfrupbQ2+vtbwzjll9GSf3h6FkoM8kLebjTiv2uvmtJQDs3PvwMGb2fgjNonHmQextqys2uBYyZDucek/xHHPDafEAvptXX0IKtBnsBBcEdP0BihXI=
+    secure: H1uIMfEise77rqseHA842rOqetSECmhruwJVU3YX1uNZU7WRYUZ0UhSmypCBNYY6B+AHEOhuUsBK14Zbr9juFLikpcH3T+0N7jxe4rSpQFcVa2rHyBfxC1jHV1XVl+CXmk+dJUw9RYUfA52N4UyeI0jaYx3r4IdQVkhy/cA9i6E=
   file:
     - "emoticon.js"
     - "emoticon.min.js"
