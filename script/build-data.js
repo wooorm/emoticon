@@ -59,7 +59,7 @@ data.forEach(function(info) {
       /([\s\S])\1+/g.test(emoticon) ||
       emoticon === '=-'
     ) {
-      console.log('Removing dangerous/unused emoticon: ', emoticon)
+      console.log('Removing dangerous/unused emoticon:', emoticon)
       return false
     }
 

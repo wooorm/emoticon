@@ -9,13 +9,17 @@ test('emoticon', function(t) {
 
   t.doesNotThrow(function() {
     emoticon.forEach(function(info) {
-      assert.equal(typeof info.emoji, 'string', JSON.stringify(info))
+      assert.strictEqual(typeof info.emoji, 'string', JSON.stringify(info))
     })
   }, 'each entry should have an `emoji` string field')
 
   t.doesNotThrow(function() {
     emoticon.forEach(function(info) {
-      assert.equal(typeof info.description, 'string', JSON.stringify(info))
+      assert.strictEqual(
+        typeof info.description,
+        'string',
+        JSON.stringify(info)
+      )
     })
   }, 'each entry should have an `description` string field')
 
