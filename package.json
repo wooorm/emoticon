@@ -43,18 +43,6 @@
     "test-api": "node test",
     "test": "npm run generate && npm run format && npm run build && npm run test-api"
   },
-  "remarkConfig": {
-    "settings": {
-      "paddedTable": false
-    },
-    "plugins": [
-      "preset-wooorm",
-      [
-        "lint-table-pipe-alignment",
-        false
-      ]
-    ]
-  },
   "prettier": {
     "tabWidth": 2,
     "useTabs": false,
@@ -66,12 +54,20 @@
   "xo": {
     "prettier": true,
     "esnext": false,
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off"
-    },
     "ignore": [
       "emotion.js"
+    ]
+  },
+  "remarkConfig": {
+    "settings": {
+      "paddedTable": false
+    },
+    "plugins": [
+      "preset-wooorm",
+      [
+        "lint-table-pipe-alignment",
+        false
+      ]
     ]
   }
 }
