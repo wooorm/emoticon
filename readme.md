@@ -29,7 +29,8 @@ Yields:
     emoji: '😠',
     tags: [ 'mad', 'annoyed' ],
     description: 'angry face',
-    emoticons: [ '>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-[' ] },
+    emoticons:
+     [ '>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-[' ] },
   { name: 'blush',
     emoji: '😊',
     tags: [ 'proud' ],
