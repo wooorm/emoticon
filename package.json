@@ -35,7 +35,7 @@
   },
   "scripts": {
     "generate": "node script/build-data",
-    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "build-support": "node script/build-support",
     "build-bundle": "browserify index.json --bare -s emoticon > emoticon.js",
     "build-mangle": "esmangle emoticon.js > emoticon.min.js",
