@@ -7,7 +7,7 @@ var alias = require('../alias')
 
 var own = {}.hasOwnProperty
 
-/* Get the emoticon representation of emoticons. */
+// Get the emoticon representation of emoticons.
 var data = Object.keys(schema)
   .filter(function(name) {
     var has = own.call(gemoji.name, name)
@@ -47,7 +47,7 @@ var data = Object.keys(schema)
     return Boolean(info.emoticons)
   })
 
-/* Remove some black-listed emoticons. */
+// Remove some black-listed emoticons.
 data.forEach(function(info) {
   info.emoticons = info.emoticons.filter(filter)
 
@@ -67,7 +67,7 @@ data.forEach(function(info) {
   }
 })
 
-/* Detect if emoticons are classified multiple times. */
+// Detect if emoticons are classified multiple times.
 var known = {}
 
 data.forEach(function(info) {
@@ -85,7 +85,7 @@ data.forEach(function(info) {
   })
 })
 
-/* Write. */
+// Write.
 fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n')
 
 function unpack(val) {
@@ -98,7 +98,7 @@ function unpack(val) {
   return res
 }
 
-/* Flatten facial parts. */
+// Flatten facial parts.
 function flatten(keys) {
   var result = []
   var index = -1
