@@ -1,7 +1,7 @@
 # Supported emoticons
 
-Note that you need a browser capable of viewing
-unicode-emoji to make sense of the first column!
+Note that you need a browser capable of viewing emoji to make sense of
+the first column!
 
 | Emoji | Name | Tags | Emoticons |
 | :---: | :--: | :--: | :-------: |

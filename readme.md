@@ -6,17 +6,17 @@
 
 Info on ASCII emoticons.  :p
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install emoticon
 ```
 
-## Usage
+## Use
 
-```javascript
+```js
 var emoticon = require('emoticon')
 
 console.log(emoticon.slice(0, 3))
@@ -57,7 +57,7 @@ Yields:
 
 ## Support
 
-See [support.md][support].
+See [`support.md`][support].
 
 ## License
 
