@@ -23,7 +23,7 @@ fs.writeFileSync(
     'Note that you need a browser capable of viewing emoji to make sense of',
     'the first column!',
     '',
-    table(data, {align: 'c', pad: false}),
+    table(data, {align: 'c', alignDelimiters: false}),
     ''
   ].join('\n')
 )
