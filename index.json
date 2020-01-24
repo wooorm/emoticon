@@ -248,7 +248,7 @@
       "happy",
       "haha"
     ],
-    "description": "smiling face with open mouth & closed eyes",
+    "description": "grinning squinting face",
     "emoticons": [
       "x)",
       "x]",
@@ -358,7 +358,7 @@
       "laugh",
       "pleased"
     ],
-    "description": "smiling face with open mouth & smiling eyes",
+    "description": "grinning face with smiling eyes",
     "emoticons": [
       ":D",
       ":-D",
@@ -374,7 +374,7 @@
       "joy",
       "haha"
     ],
-    "description": "smiling face with open mouth",
+    "description": "grinning face with big eyes",
     "emoticons": [
       ":)",
       ":]",
@@ -442,7 +442,7 @@
     "name": "stuck_out_tongue",
     "emoji": "😛",
     "tags": [],
-    "description": "face with stuck-out tongue",
+    "description": "face with tongue",
     "emoticons": [
       ":p",
       ":P",
@@ -464,7 +464,7 @@
     "tags": [
       "prank"
     ],
-    "description": "face with stuck-out tongue & closed eyes",
+    "description": "squinting face with tongue",
     "emoticons": [
       "xP",
       "x-p",
@@ -484,7 +484,7 @@
       "prank",
       "silly"
     ],
-    "description": "face with stuck-out tongue & winking eye",
+    "description": "winking face with tongue",
     "emoticons": [
       ";p",
       ";P",
@@ -519,7 +519,7 @@
     "name": "sweat",
     "emoji": "😓",
     "tags": [],
-    "description": "face with cold sweat",
+    "description": "downcast face with sweat",
     "emoticons": [
       ",:(",
       ",:[",
@@ -545,7 +545,7 @@
     "tags": [
       "hot"
     ],
-    "description": "smiling face with open mouth & cold sweat",
+    "description": "grinning face with sweat",
     "emoticons": [
       ",:)",
       ",:]",

@@ -9,63 +9,56 @@ var own = {}.hasOwnProperty
 
 // Get the emoticon representation of emoticons.
 var data = Object.keys(schema)
-  .filter(function(name) {
-    var has = own.call(gemoji.name, name)
-
-    if (!has) {
-      console.log('Missing info for `%s`, `%s`', gemoji.emoji, gemoji.name)
-    }
-
-    return has
-  })
   .map(function(name) {
-    return gemoji.name[name]
+    return {
+      name: name,
+      info: gemoji.find(d => d.names.includes(name)),
+      structure: schema[name]
+    }
   })
-  .map(function(info) {
-    var emoticon = schema[info.name]
+  .map(function(ctx) {
+    var structure = ctx.structure
     var result
 
-    emoticon = emoticon.map(function(key) {
+    structure = structure.map(function(key) {
       return flatten([key])
     })
 
-    while (emoticon[1]) {
-      result = unpack(emoticon)
-      emoticon.shift()
-      emoticon[0] = result
+    while (structure[1]) {
+      result = unpack(structure)
+      structure.shift()
+      structure[0] = result
     }
 
+    // Remove some dangerous emoticons.
+    result = (result || []).filter(filter)
+
     return {
-      name: info.name,
-      emoji: info.emoji,
-      tags: info.tags,
-      description: info.description,
+      name: ctx.name,
+      emoji: ctx.info.emoji,
+      tags: ctx.info.tags,
+      description: ctx.info.description,
       emoticons: result
+    }
+
+    function filter(emoticon) {
+      if (
+        (/^[a-zA-Z]+$/.test(emoticon) &&
+          (emoticon.toUpperCase() === emoticon ||
+            emoticon.toLowerCase() === emoticon)) ||
+        /([\s\S])\1+/g.test(emoticon) ||
+        emoticon === '=-'
+      ) {
+        console.log('Removing dangerous/unused emoticon:', emoticon)
+        return false
+      }
+
+      return true
     }
   })
   .filter(function(info) {
-    return Boolean(info.emoticons)
+    return info.emoticons.length !== 0
   })
-
-// Remove some black-listed emoticons.
-data.forEach(function(info) {
-  info.emoticons = info.emoticons.filter(filter)
-
-  function filter(emoticon) {
-    if (
-      (/^[a-zA-Z]+$/.test(emoticon) &&
-        (emoticon.toUpperCase() === emoticon ||
-          emoticon.toLowerCase() === emoticon)) ||
-      /([\s\S])\1+/g.test(emoticon) ||
-      emoticon === '=-'
-    ) {
-      console.log('Removing dangerous/unused emoticon:', emoticon)
-      return false
-    }
-
-    return true
-  }
-})
 
 // Detect if emoticons are classified multiple times.
 var known = {}
