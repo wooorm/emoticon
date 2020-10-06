@@ -5,7 +5,7 @@ var table = require('markdown-table')
 var emoticons = require('..')
 
 var data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
-  emoticons.map(function(info) {
+  emoticons.map(function (info) {
     return [
       info.emoji,
       info.name,

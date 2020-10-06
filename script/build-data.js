@@ -9,18 +9,18 @@ var own = {}.hasOwnProperty
 
 // Get the emoticon representation of emoticons.
 var data = Object.keys(schema)
-  .map(function(name) {
+  .map(function (name) {
     return {
       name: name,
-      info: gemoji.find(d => d.names.includes(name)),
+      info: gemoji.find((d) => d.names.includes(name)),
       structure: schema[name]
     }
   })
-  .map(function(ctx) {
+  .map(function (ctx) {
     var structure = ctx.structure
     var result
 
-    structure = structure.map(function(key) {
+    structure = structure.map(function (key) {
       return flatten([key])
     })
 
@@ -56,15 +56,15 @@ var data = Object.keys(schema)
       return true
     }
   })
-  .filter(function(info) {
+  .filter(function (info) {
     return info.emoticons.length !== 0
   })
 
 // Detect if emoticons are classified multiple times.
 var known = {}
 
-data.forEach(function(info) {
-  info.emoticons.forEach(function(emoticon) {
+data.forEach(function (info) {
+  info.emoticons.forEach(function (emoticon) {
     if (own.call(known, emoticon)) {
       console.log(
         'Duplicate emoticon `%s` in `%s` and `%s`',
@@ -81,14 +81,14 @@ data.forEach(function(info) {
 // Write.
 fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n')
 
-function unpack(val) {
-  var res = []
-  val[0].forEach(function(first) {
-    val[1].forEach(function(second) {
-      res.push(first + second)
+function unpack(value) {
+  var result = []
+  value[0].forEach(function (first) {
+    value[1].forEach(function (second) {
+      result.push(first + second)
     })
   })
-  return res
+  return result
 }
 
 // Flatten facial parts.
