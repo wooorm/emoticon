@@ -1,2 +1,6 @@
+.nyc_output/
+coverage/
+*.md
+*.json
 emoticon.js
 emoticon.min.js
