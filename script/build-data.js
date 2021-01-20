@@ -57,7 +57,7 @@ var data = Object.keys(schema)
     }
   })
   .filter(function (info) {
-    return info.emoticons.length !== 0
+    return info.emoticons.length > 0
   })
 
 // Detect if emoticons are classified multiple times.
