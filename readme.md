@@ -65,9 +65,9 @@ See [`support.md`][support].
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/wooorm/emoticon.svg
+[build-badge]: https://github.com/wooorm/emoticon/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/wooorm/emoticon
+[build]: https://github.com/wooorm/emoticon/actions
 
 [downloads-badge]: https://img.shields.io/npm/dm/emoticon.svg
 
