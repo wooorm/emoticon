@@ -1,9 +1,8 @@
-'use strict'
+import fs from 'fs'
+import {gemoji} from 'gemoji'
 
-var fs = require('fs')
-var gemoji = require('gemoji')
-var schema = require('../schema')
-var alias = require('../alias')
+var schema = JSON.parse(fs.readFileSync('schema.json'))
+var alias = JSON.parse(fs.readFileSync('alias.json'))
 
 var own = {}.hasOwnProperty
 
@@ -11,7 +10,7 @@ var own = {}.hasOwnProperty
 var data = Object.keys(schema)
   .map(function (name) {
     return {
-      name: name,
+      name,
       info: gemoji.find((d) => d.names.includes(name)),
       structure: schema[name]
     }
@@ -31,17 +30,7 @@ var data = Object.keys(schema)
     }
 
     // Remove some dangerous emoticons.
-    result = (result || []).filter(filter)
-
-    return {
-      name: ctx.name,
-      emoji: ctx.info.emoji,
-      tags: ctx.info.tags,
-      description: ctx.info.description,
-      emoticons: result
-    }
-
-    function filter(emoticon) {
+    result = (result || []).filter(function (emoticon) {
       if (
         (/^[a-zA-Z]+$/.test(emoticon) &&
           (emoticon.toUpperCase() === emoticon ||
@@ -54,6 +43,14 @@ var data = Object.keys(schema)
       }
 
       return true
+    })
+
+    return {
+      name: ctx.name,
+      emoji: ctx.info.emoji,
+      tags: ctx.info.tags,
+      description: ctx.info.description,
+      emoticons: result
     }
   })
   .filter(function (info) {
@@ -81,7 +78,10 @@ for (info of data) {
 }
 
 // Write.
-fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n')
+fs.writeFileSync(
+  'index.js',
+  'export var emoticon = ' + JSON.stringify(data, null, 2) + '\n'
+)
 
 function unpack(value) {
   var result = []

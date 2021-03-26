@@ -1,12 +1,16 @@
 # emoticon
 
 [![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
 Info on ASCII emoticons.  :p
 
 ## Install
+
+This package is ESM only: Node 12+ is needed to use it and it must be `import`ed
+instead of `require`d.
 
 [npm][]:
 
@@ -17,7 +21,7 @@ npm install emoticon
 ## Use
 
 ```js
-var emoticon = require('emoticon')
+import {emoticon} from 'emoticon'
 
 console.log(emoticon.slice(0, 3))
 ```
@@ -55,6 +59,13 @@ Yields:
     emoticons: [ '<\\3', '</3' ] } ]
 ```
 
+## API
+
+This package exports the following identifiers: `emoticon`.
+There is no default export.
+
+See use above for an example.
+
 ## Support
 
 See [`support.md`][support].
@@ -68,6 +79,10 @@ See [`support.md`][support].
 [build-badge]: https://github.com/wooorm/emoticon/workflows/main/badge.svg
 
 [build]: https://github.com/wooorm/emoticon/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/emoticon.svg
+
+[coverage]: https://codecov.io/github/wooorm/emoticon
 
 [downloads-badge]: https://img.shields.io/npm/dm/emoticon.svg
 

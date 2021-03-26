@@ -1,188 +1,63 @@
 {
-  "angry": [
-    ">",
-    "eyesNormal",
-    "noseOptional",
-    "mouthNegative"
-  ],
+  "angry": [">", "eyesNormal", "noseOptional", "mouthNegative"],
   "anguished": [],
   "astonished": [],
-  "blush": [
-    "eyesNormal",
-    "noseOptional",
-    "blush",
-    "mouthPositive"
-  ],
-  "broken_heart": [
-    ["<"],
-    ["\\", "/"],
-    ["3"]
-  ],
+  "blush": ["eyesNormal", "noseOptional", "blush", "mouthPositive"],
+  "broken_heart": [["<"], ["\\", "/"], ["3"]],
   "cold_sweat": [],
   "confounded": [],
-  "confused": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthConfused"
-  ],
-  "cry": [
-    "eyesNormal",
-    "drop",
-    "noseOptional",
-    "mouthNotPositive"
-  ],
+  "confused": ["eyesNormal", "noseOptional", "mouthConfused"],
+  "cry": ["eyesNormal", "drop", "noseOptional", "mouthNotPositive"],
   "disappointed": [],
   "disappointed_relieved": [],
   "dizzy_face": [],
   "expressionless": [],
   "fearful": [],
   "flushed": [],
-  "frowning": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthNegative"
-  ],
+  "frowning": ["eyesNormal", "noseOptional", "mouthNegative"],
   "grimacing": [],
   "grin": [],
   "grinning": [],
-  "heart": [
-    ["<"],
-    ["3"]
-  ],
+  "heart": [["<"], ["3"]],
   "heart_eyes": [],
   "hushed": [],
-  "imp": [
-    "horns",
-    "eyesNormal",
-    "noseOptional",
-    "mouthNegative"
-  ],
-  "innocent": [
-    "halo",
-    "eyesNormal",
-    "noseOptional",
-    "mouthPositive"
-  ],
-  "joy": [
-    "eyesNormal",
-    "drop",
-    "noseOptional",
-    "mouthPositive"
-  ],
-  "kissing": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthKissing"
-  ],
+  "imp": ["horns", "eyesNormal", "noseOptional", "mouthNegative"],
+  "innocent": ["halo", "eyesNormal", "noseOptional", "mouthPositive"],
+  "joy": ["eyesNormal", "drop", "noseOptional", "mouthPositive"],
+  "kissing": ["eyesNormal", "noseOptional", "mouthKissing"],
   "kissing_closed_eyes": [],
   "kissing_heart": [],
   "kissing_smiling_eyes": [],
-  "laughing": [
-    "eyesClosed",
-    "noseOptional",
-    "mouthPositive"
-  ],
-  "man": [
-    "eyes",
-    "noseOptional",
-    "moustache"
-  ],
+  "laughing": ["eyesClosed", "noseOptional", "mouthPositive"],
+  "man": ["eyes", "noseOptional", "moustache"],
   "mask": [],
-  "neutral_face": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthNeutral"
-  ],
-  "no_mouth": [
-    "eyesNormal",
-    "nose"
-  ],
-  "open_mouth": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthOpen"
-  ],
+  "neutral_face": ["eyesNormal", "noseOptional", "mouthNeutral"],
+  "no_mouth": ["eyesNormal", "nose"],
+  "open_mouth": ["eyesNormal", "noseOptional", "mouthOpen"],
   "pensive": [],
   "persevere": [],
-  "rage": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthAngry"
-  ],
+  "rage": ["eyesNormal", "noseOptional", "mouthAngry"],
   "relaxed": [],
   "relieved": [],
   "scream": [],
   "sleeping": [],
   "sleepy": [],
-  "smile": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthPositiveVery"
-  ],
-  "smiley": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthPositiveNormal"
-  ],
-  "smiling_imp": [
-    "horns",
-    "eyesNormal",
-    "noseOptional",
-    "mouthPositive"
-  ],
+  "smile": ["eyesNormal", "noseOptional", "mouthPositiveVery"],
+  "smiley": ["eyesNormal", "noseOptional", "mouthPositiveNormal"],
+  "smiling_imp": ["horns", "eyesNormal", "noseOptional", "mouthPositive"],
   "smirk": [],
-  "sob": [
-    "eyesNormal",
-    "drop",
-    "drop",
-    "noseOptional",
-    "mouthNegative"
-  ],
-  "stuck_out_tongue": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthTongue"
-  ],
-  "stuck_out_tongue_closed_eyes": [
-    "eyesClosed",
-    "noseOptional",
-    "mouthTongue"
-  ],
-  "stuck_out_tongue_winking_eye": [
-    "eyesWink",
-    "noseOptional",
-    "mouthTongue"
-  ],
-  "sunglasses": [
-    "eyesGlasses",
-    "noseOptional",
-    "mouthPositive"
-  ],
-  "sweat": [
-    "drop",
-    "eyesNormal",
-    "noseOptional",
-    "mouthNegative"
-  ],
-  "sweat_smile": [
-    "drop",
-    "eyesNormal",
-    "noseOptional",
-    "mouthPositive"
-  ],
+  "sob": ["eyesNormal", "drop", "drop", "noseOptional", "mouthNegative"],
+  "stuck_out_tongue": ["eyesNormal", "noseOptional", "mouthTongue"],
+  "stuck_out_tongue_closed_eyes": ["eyesClosed", "noseOptional", "mouthTongue"],
+  "stuck_out_tongue_winking_eye": ["eyesWink", "noseOptional", "mouthTongue"],
+  "sunglasses": ["eyesGlasses", "noseOptional", "mouthPositive"],
+  "sweat": ["drop", "eyesNormal", "noseOptional", "mouthNegative"],
+  "sweat_smile": ["drop", "eyesNormal", "noseOptional", "mouthPositive"],
   "tired_face": [],
   "triumph": [],
-  "unamused": [
-    "eyesNormal",
-    "noseOptional",
-    "mouthSquiggly"
-  ],
+  "unamused": ["eyesNormal", "noseOptional", "mouthSquiggly"],
   "weary": [],
-  "wink": [
-    "eyesWink",
-    "noseOptional",
-    "mouthPositive"
-  ],
+  "wink": ["eyesWink", "noseOptional", "mouthPositive"],
   "worried": [],
   "yum": []
 }

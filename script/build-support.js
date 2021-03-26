@@ -1,11 +1,9 @@
-'use strict'
-
-var fs = require('fs')
-var table = require('markdown-table')
-var emoticons = require('..')
+import fs from 'fs'
+import {markdownTable} from 'markdown-table'
+import {emoticon} from '../index.js'
 
 var data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
-  emoticons.map(function (info) {
+  emoticon.map(function (info) {
     return [
       info.emoji,
       info.name,
@@ -23,7 +21,7 @@ fs.writeFileSync(
     'Note that you need a browser capable of viewing emoji to make sense of',
     'the first column!',
     '',
-    table(data, {align: 'c', alignDelimiters: false}),
+    markdownTable(data, {align: 'c', alignDelimiters: false}),
     ''
   ].join('\n')
 )
