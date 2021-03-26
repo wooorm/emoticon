@@ -1,8 +1,10 @@
 import fs from 'fs'
 import {gemoji} from 'gemoji'
 
-var schema = JSON.parse(fs.readFileSync('schema.json'))
-var alias = JSON.parse(fs.readFileSync('alias.json'))
+/** @type {Object.<string, string[]>} */
+var schema = JSON.parse(String(fs.readFileSync('schema.json')))
+/** @type {Object.<string, string | string[]>} */
+var alias = JSON.parse(String(fs.readFileSync('alias.json')))
 
 var own = {}.hasOwnProperty
 
@@ -16,7 +18,9 @@ var data = Object.keys(schema)
     }
   })
   .map(function (ctx) {
+    /** @type {string[]|string[][]} */
     var structure = ctx.structure
+    /** @type {string[]} */
     var result
 
     structure = structure.map(function (key) {
@@ -59,7 +63,9 @@ var data = Object.keys(schema)
 
 // Detect if emoticons are classified multiple times.
 var known = {}
+/** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
 var info
+/** @type {string} */
 var emoticon
 
 for (info of data) {
@@ -83,9 +89,15 @@ fs.writeFileSync(
   'export var emoticon = ' + JSON.stringify(data, null, 2) + '\n'
 )
 
+/**
+ * @param {string[]|string[][]} value
+ */
 function unpack(value) {
+  /** @type {string[]} */
   var result = []
+  /** @type {string} */
   var first
+  /** @type {string} */
   var second
 
   for (first of value[0]) {
@@ -97,17 +109,20 @@ function unpack(value) {
   return result
 }
 
-// Flatten facial parts.
+/**
+ * Flatten facial parts.
+ * @param {string|string[]} keys
+ */
 function flatten(keys) {
+  /** @type {string[]} */
   var result = []
   var index = -1
-  var length = keys.length
 
-  while (++index < length) {
+  while (++index < keys.length) {
     if (own.call(alias, keys[index])) {
-      result = result.concat(flatten(alias[keys[index]]))
+      result.push(...flatten(alias[keys[index]]))
     } else if (Array.isArray(keys[index])) {
-      result = result.concat(keys[index])
+      result.push(...keys[index])
     } else {
       result.push(keys[index])
     }

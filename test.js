@@ -6,6 +6,7 @@ test('emoticon', function (t) {
   t.ok(Array.isArray(emoticon), 'should be an array')
 
   t.doesNotThrow(function () {
+    /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
     var info
 
     for (info of emoticon) {
@@ -14,6 +15,7 @@ test('emoticon', function (t) {
   }, 'each entry should have an `emoji` string field')
 
   t.doesNotThrow(function () {
+    /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
     var info
 
     for (info of emoticon) {
@@ -26,6 +28,7 @@ test('emoticon', function (t) {
   }, 'each entry should have an `description` string field')
 
   t.doesNotThrow(function () {
+    /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
     var info
 
     for (info of emoticon) {
@@ -34,6 +37,7 @@ test('emoticon', function (t) {
   }, 'each entry should have an `tags` array field')
 
   t.doesNotThrow(function () {
+    /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
     var info
 
     for (info of emoticon) {
