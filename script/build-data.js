@@ -62,9 +62,11 @@ var data = Object.keys(schema)
 
 // Detect if emoticons are classified multiple times.
 var known = {}
+var info
+var emoticon
 
-data.forEach(function (info) {
-  info.emoticons.forEach(function (emoticon) {
+for (info of data) {
+  for (emoticon of info.emoticons) {
     if (own.call(known, emoticon)) {
       console.log(
         'Duplicate emoticon `%s` in `%s` and `%s`',
@@ -75,19 +77,23 @@ data.forEach(function (info) {
     }
 
     known[emoticon] = info.name
-  })
-})
+  }
+}
 
 // Write.
 fs.writeFileSync('index.json', JSON.stringify(data, null, 2) + '\n')
 
 function unpack(value) {
   var result = []
-  value[0].forEach(function (first) {
-    value[1].forEach(function (second) {
+  var first
+  var second
+
+  for (first of value[0]) {
+    for (second of value[1]) {
       result.push(first + second)
-    })
-  })
+    }
+  }
+
   return result
 }
 
