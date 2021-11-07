@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import {markdownTable} from 'markdown-table'
 import {emoticon} from '../index.js'
 
-var data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
+const data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
   emoticon.map(function (info) {
     return [
       info.emoji,

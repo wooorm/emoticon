@@ -2,14 +2,14 @@ import fs from 'node:fs'
 import {gemoji} from 'gemoji'
 
 /** @type {Object.<string, string[]>} */
-var schema = JSON.parse(String(fs.readFileSync('schema.json')))
+const schema = JSON.parse(String(fs.readFileSync('schema.json')))
 /** @type {Object.<string, string | string[]>} */
-var alias = JSON.parse(String(fs.readFileSync('alias.json')))
+const alias = JSON.parse(String(fs.readFileSync('alias.json')))
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
 // Get the emoticon representation of emoticons.
-var data = Object.keys(schema)
+const data = Object.keys(schema)
   .map(function (name) {
     return {
       name,
@@ -19,9 +19,9 @@ var data = Object.keys(schema)
   })
   .map(function (ctx) {
     /** @type {string[]|string[][]} */
-    var structure = ctx.structure
+    let structure = ctx.structure
     /** @type {string[]} */
-    var result
+    let result
 
     structure = structure.map(function (key) {
       return flatten([key])
@@ -62,11 +62,11 @@ var data = Object.keys(schema)
   })
 
 // Detect if emoticons are classified multiple times.
-var known = {}
+const known = {}
 /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
-var info
+let info
 /** @type {string} */
-var emoticon
+let emoticon
 
 for (info of data) {
   for (emoticon of info.emoticons) {
@@ -86,7 +86,7 @@ for (info of data) {
 // Write.
 fs.writeFileSync(
   'index.js',
-  'export var emoticon = ' + JSON.stringify(data, null, 2) + '\n'
+  'export const emoticon = ' + JSON.stringify(data, null, 2) + '\n'
 )
 
 /**
@@ -94,11 +94,11 @@ fs.writeFileSync(
  */
 function unpack(value) {
   /** @type {string[]} */
-  var result = []
+  const result = []
   /** @type {string} */
-  var first
+  let first
   /** @type {string} */
-  var second
+  let second
 
   for (first of value[0]) {
     for (second of value[1]) {
@@ -115,8 +115,8 @@ function unpack(value) {
  */
 function flatten(keys) {
   /** @type {string[]} */
-  var result = []
-  var index = -1
+  const result = []
+  let index = -1
 
   while (++index < keys.length) {
     if (own.call(alias, keys[index])) {

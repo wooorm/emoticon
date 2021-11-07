@@ -1,4 +1,4 @@
-export var emoticon = [
+export const emoticon = [
   {
     name: 'angry',
     emoji: '😠',

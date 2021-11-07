@@ -7,7 +7,7 @@ test('emoticon', function (t) {
 
   t.doesNotThrow(function () {
     /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
-    var info
+    let info
 
     for (info of emoticon) {
       assert.strictEqual(typeof info.emoji, 'string', JSON.stringify(info))
@@ -16,7 +16,7 @@ test('emoticon', function (t) {
 
   t.doesNotThrow(function () {
     /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
-    var info
+    let info
 
     for (info of emoticon) {
       assert.strictEqual(
@@ -29,7 +29,7 @@ test('emoticon', function (t) {
 
   t.doesNotThrow(function () {
     /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
-    var info
+    let info
 
     for (info of emoticon) {
       assert.ok(Array.isArray(info.tags), JSON.stringify(info))
@@ -38,7 +38,7 @@ test('emoticon', function (t) {
 
   t.doesNotThrow(function () {
     /** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
-    var info
+    let info
 
     for (info of emoticon) {
       assert.ok(Array.isArray(info.emoticons), JSON.stringify(info))
