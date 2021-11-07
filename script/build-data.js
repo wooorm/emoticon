@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import {gemoji} from 'gemoji'
 
 /** @type {Object.<string, string[]>} */

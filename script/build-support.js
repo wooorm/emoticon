@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import {markdownTable} from 'markdown-table'
 import {emoticon} from '../index.js'
 
