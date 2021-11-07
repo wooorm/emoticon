@@ -1,40 +1,46 @@
+/**
+ * @typedef Emoticon
+ * @property {string} name
+ * @property {string} emoji
+ * @property {Array<string>} tags
+ * @property {string} description
+ * @property {Array<string>} emoticons
+ */
+
+import assert from 'node:assert'
 import fs from 'node:fs'
 import {gemoji} from 'gemoji'
 
-/** @type {Object.<string, string[]>} */
+/** @type {Record<string, Array<string>>} */
 const schema = JSON.parse(String(fs.readFileSync('schema.json')))
-/** @type {Object.<string, string | string[]>} */
+/** @type {Record<string, string|Array<string>>} */
 const alias = JSON.parse(String(fs.readFileSync('alias.json')))
 
 const own = {}.hasOwnProperty
 
 // Get the emoticon representation of emoticons.
+/** @type {Array<Emoticon>} */
 const data = Object.keys(schema)
-  .map(function (name) {
-    return {
-      name,
-      info: gemoji.find((d) => d.names.includes(name)),
-      structure: schema[name]
-    }
-  })
-  .map(function (ctx) {
-    /** @type {string[]|string[][]} */
-    let structure = ctx.structure
-    /** @type {string[]} */
+  .map((name) => ({
+    name,
+    info: gemoji.find((d) => d.names.includes(name)),
+    structure: schema[name]
+  }))
+  .map((ctx) => {
+    assert(ctx.info, 'expected matching gemoji for `' + ctx.name + '`')
+    const structure = ctx.structure
+    const flatStructure = structure.map((key) => flatten([key]))
+    /** @type {Array<string>|undefined} */
     let result
 
-    structure = structure.map(function (key) {
-      return flatten([key])
-    })
-
-    while (structure[1]) {
-      result = unpack(structure)
-      structure.shift()
-      structure[0] = result
+    while (flatStructure[1]) {
+      result = unpack(flatStructure)
+      flatStructure.shift()
+      flatStructure[0] = result
     }
 
     // Remove some dangerous emoticons.
-    result = (result || []).filter(function (emoticon) {
+    result = (result || []).filter((emoticon) => {
       if (
         (/^[a-zA-Z]+$/.test(emoticon) &&
           (emoticon.toUpperCase() === emoticon ||
@@ -57,13 +63,12 @@ const data = Object.keys(schema)
       emoticons: result
     }
   })
-  .filter(function (info) {
-    return info.emoticons.length > 0
-  })
+  .filter((info) => info.emoticons.length > 0)
 
 // Detect if emoticons are classified multiple times.
+/** @type {Record<string, string>} */
 const known = {}
-/** @type {{name: string, emoji: string, tags: string[], description: string, emoticons: string[]}} */
+/** @type {Emoticon} */
 let info
 /** @type {string} */
 let emoticon
@@ -86,14 +91,31 @@ for (info of data) {
 // Write.
 fs.writeFileSync(
   'index.js',
-  'export const emoticon = ' + JSON.stringify(data, null, 2) + '\n'
+  [
+    '/**',
+    ' * @typedef Emoticon',
+    ' * @property {string} name',
+    ' * @property {string} emoji',
+    ' * @property {Array<string>} tags',
+    ' * @property {string} description',
+    ' * @property {Array<string>} emoticons',
+    ' */',
+    '',
+    '/**',
+    ' * List of emoticons.',
+    ' *',
+    ' * @type {Array<Emoticon>}',
+    ' */',
+    'export const emoticon = ' + JSON.stringify(data, null, 2),
+    ''
+  ].join('\n')
 )
 
 /**
- * @param {string[]|string[][]} value
+ * @param {Array<string>|Array<Array<string>>} value
  */
 function unpack(value) {
-  /** @type {string[]} */
+  /** @type {Array<string>} */
   const result = []
   /** @type {string} */
   let first
@@ -111,10 +133,10 @@ function unpack(value) {
 
 /**
  * Flatten facial parts.
- * @param {string|string[]} keys
+ * @param {string|Array<string>} keys
  */
 function flatten(keys) {
-  /** @type {string[]} */
+  /** @type {Array<string>} */
   const result = []
   let index = -1
 

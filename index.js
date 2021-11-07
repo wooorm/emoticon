@@ -1,3 +1,17 @@
+/**
+ * @typedef Emoticon
+ * @property {string} name
+ * @property {string} emoji
+ * @property {Array<string>} tags
+ * @property {string} description
+ * @property {Array<string>} emoticons
+ */
+
+/**
+ * List of emoticons.
+ *
+ * @type {Array<Emoticon>}
+ */
 export const emoticon = [
   {
     name: 'angry',
