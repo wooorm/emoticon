@@ -2,14 +2,14 @@
  * @typedef {import('./index.js').Emoticon} Emoticon
  */
 
-import assert from 'node:assert'
-import test from 'tape'
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {emoticon} from './index.js'
 
-test('emoticon', function (t) {
-  t.ok(Array.isArray(emoticon), 'should be an array')
+test('emoticon', function () {
+  assert.ok(Array.isArray(emoticon), 'should be an array')
 
-  t.doesNotThrow(function () {
+  assert.doesNotThrow(function () {
     /** @type {Emoticon} */
     let info
 
@@ -18,7 +18,7 @@ test('emoticon', function (t) {
     }
   }, 'each entry should have an `emoji` string field')
 
-  t.doesNotThrow(function () {
+  assert.doesNotThrow(function () {
     /** @type {Emoticon} */
     let info
 
@@ -31,7 +31,7 @@ test('emoticon', function (t) {
     }
   }, 'each entry should have an `description` string field')
 
-  t.doesNotThrow(function () {
+  assert.doesNotThrow(function () {
     /** @type {Emoticon} */
     let info
 
@@ -40,7 +40,7 @@ test('emoticon', function (t) {
     }
   }, 'each entry should have an `tags` array field')
 
-  t.doesNotThrow(function () {
+  assert.doesNotThrow(function () {
     /** @type {Emoticon} */
     let info
 
@@ -48,6 +48,4 @@ test('emoticon', function (t) {
       assert.ok(Array.isArray(info.emoticons), JSON.stringify(info))
     }
   }, 'each entry should have an `emoticons` array field')
-
-  t.end()
 })
