@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import {markdownTable} from 'markdown-table'
 import {emoticon} from '../index.js'
 
@@ -13,7 +13,7 @@ const data = [['Emoji', 'Name', 'Tags', 'Emoticons']].concat(
   })
 )
 
-fs.writeFileSync(
+await fs.writeFile(
   'support.md',
   [
     '# Supported emoticons',

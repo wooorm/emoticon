@@ -7,14 +7,14 @@
  * @property {Array<string>} emoticons
  */
 
-import assert from 'node:assert'
-import fs from 'node:fs'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
 import {gemoji} from 'gemoji'
 
 /** @type {Record<string, Array<string>>} */
-const schema = JSON.parse(String(fs.readFileSync('schema.json')))
+const schema = JSON.parse(String(await fs.readFile('schema.json')))
 /** @type {Record<string, string|Array<string>>} */
-const alias = JSON.parse(String(fs.readFileSync('alias.json')))
+const alias = JSON.parse(String(await fs.readFile('alias.json')))
 
 const own = {}.hasOwnProperty
 
@@ -89,7 +89,7 @@ for (info of data) {
 }
 
 // Write.
-fs.writeFileSync(
+await fs.writeFile(
   'index.js',
   [
     '/**',
