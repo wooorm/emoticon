@@ -15,8 +15,8 @@ List of emoticons.
 *   [Use](#use)
 *   [API](#api)
     *   [`emoticon`](#emoticon-1)
-*   [Types](#types)
 *   [List of emoticons](#list-of-emoticons)
+*   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
 *   [Related](#related)
@@ -36,7 +36,7 @@ for example to figure out which text emoticons map to what emoji.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+, 16.0+), install with [npm][]:
 
 ```sh
 npm install emoticon
@@ -99,7 +99,7 @@ Yields:
 
 ## API
 
-This package exports the following identifier: `emoticon`.
+This package exports the identifier `emoticon`.
 There is no default export.
 
 ### `emoticon`
@@ -118,19 +118,19 @@ fields:
 *   `emoticons` (`Array<string>`)
     — ASCII emoticons
 
-## Types
-
-This package is fully typed with [TypeScript][].
-It exports an additional `Emoticon` type that models its respective interface.
-
 ## List of emoticons
 
 See [`support.md`][support].
 
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports an additional type `Emoticon`.
+
 ## Compatibility
 
 This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 It also works in Deno and modern browsers.
 
 ## Security
