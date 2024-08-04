@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @typedef Emoticon
  * @property {string} name
@@ -11,7 +13,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import {gemoji} from 'gemoji'
 
-/** @type {Record<string, Array<string>>} */
+/** @type {Record<string, Array<Array<string>>>} */
 const schema = JSON.parse(String(await fs.readFile('schema.json')))
 /** @type {Record<string, string|Array<string>>} */
 const alias = JSON.parse(String(await fs.readFile('alias.json')))
@@ -29,31 +31,36 @@ const data = Object.keys(schema)
   .map((ctx) => {
     assert(ctx.info, 'expected matching gemoji for `' + ctx.name + '`')
     const structure = ctx.structure
-    const flatStructure = structure.map((key) => flatten([key]))
-    /** @type {Array<string>|undefined} */
-    let result
 
-    while (flatStructure[1]) {
-      result = unpack(flatStructure)
-      flatStructure.shift()
-      flatStructure[0] = result
-    }
+    let result = structure
+      .flatMap((faceStructure) => {
+        const flatStructure = faceStructure.map((key) => flatten([key]))
+        /** @type {Array<string>|undefined} */
+        let result
 
-    // Remove some dangerous emoticons.
-    result = (result || []).filter((emoticon) => {
-      if (
-        (/^[a-zA-Z]+$/.test(emoticon) &&
-          (emoticon.toUpperCase() === emoticon ||
-            emoticon.toLowerCase() === emoticon)) ||
-        /([\s\S])\1+/g.test(emoticon) ||
-        emoticon === '=-'
-      ) {
-        console.log('Removing dangerous/unused emoticon:', emoticon)
-        return false
-      }
+        while (flatStructure[1]) {
+          result = unpack(flatStructure)
+          flatStructure.shift()
+          flatStructure[0] = result
+        }
 
-      return true
-    })
+        return result ?? []
+      })
+      .filter((emoticon) => {
+        // Remove some dangerous emoticons.
+        if (
+          (/^[a-zA-Z]+$/.test(emoticon) &&
+            (emoticon.toUpperCase() === emoticon ||
+              emoticon.toLowerCase() === emoticon)) ||
+          /([\s\S])\1+/g.test(emoticon) ||
+          emoticon === '=-'
+        ) {
+          console.log('Removing dangerous/unused emoticon:', emoticon)
+          return false
+        }
+
+        return true
+      })
 
     return {
       name: ctx.name,
