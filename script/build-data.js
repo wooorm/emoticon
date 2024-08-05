@@ -28,11 +28,11 @@ const data = Object.keys(schema)
     info: gemoji.find((d) => d.names.includes(name)),
     structure: schema[name]
   }))
-  .map((ctx) => {
-    assert(ctx.info, 'expected matching gemoji for `' + ctx.name + '`')
-    const structure = ctx.structure
+  .map((context) => {
+    assert(context.info, 'expected matching gemoji for `' + context.name + '`')
+    const structure = context.structure
 
-    let result = structure
+    const result = structure
       .flatMap((faceStructure) => {
         const flatStructure = faceStructure.map((key) => flatten([key]))
         /** @type {Array<string>|undefined} */
@@ -63,10 +63,10 @@ const data = Object.keys(schema)
       })
 
     return {
-      name: ctx.name,
-      emoji: ctx.info.emoji,
-      tags: ctx.info.tags,
-      description: ctx.info.description,
+      name: context.name,
+      emoji: context.info.emoji,
+      tags: context.info.tags,
+      description: context.info.description,
       emoticons: result
     }
   })

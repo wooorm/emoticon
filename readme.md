@@ -9,19 +9,19 @@ List of emoticons.
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`emoticon`](#emoticon-1)
-*   [List of emoticons](#list-of-emoticons)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`emoticon`](#emoticon-1)
+* [List of emoticons](#list-of-emoticons)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -107,16 +107,16 @@ There is no default export.
 List of emoticons (`Array<Emoticon>`), where each entry has the following
 fields:
 
-*   `name` (`string`)
-    — name of an emoticon (preferred name from [`wooorm/gemoji`][gemoji])
-*   `emoji` (`string`)
-    — corresponding emoji
-*   `tags` (`Array<string>`)
-    — associated tags (from [`wooorm/gemoji`][gemoji])
-*   `description` (`string`)
-    — associated description (from [`wooorm/gemoji`][gemoji])
-*   `emoticons` (`Array<string>`)
-    — ASCII emoticons
+* `name` (`string`)
+  — name of an emoticon (preferred name from [`wooorm/gemoji`][gemoji])
+* `emoji` (`string`)
+  — corresponding emoji
+* `tags` (`Array<string>`)
+  — associated tags (from [`wooorm/gemoji`][gemoji])
+* `description` (`string`)
+  — associated description (from [`wooorm/gemoji`][gemoji])
+* `emoticons` (`Array<string>`)
+  — ASCII emoticons
 
 ## List of emoticons
 
@@ -139,16 +139,16 @@ This package is safe.
 
 ## Related
 
-*   [`wooorm/gemoji`][gemoji]
-    — info on gemoji (GitHub emoji)
-*   [`words/emoji-emotion`](https://github.com/words/emoji-emotion)
-    — list of emoji rated for valence
-*   [`wooorm/emoticon`](https://github.com/wooorm/emoticon)
-    — info on ASCII emoticons
-*   [`wooorm/strip-skin-tone`](https://github.com/wooorm/strip-skin-tone)
-    — strip skin-tones from emoji
-*   [`wooorm.com/checkmoji`](https://wooorm.com/checkmoji/)
-    — check emoji across platforms
+* [`wooorm/gemoji`][gemoji]
+  — info on gemoji (GitHub emoji)
+* [`words/emoji-emotion`](https://github.com/words/emoji-emotion)
+  — list of emoji rated for valence
+* [`wooorm/emoticon`](https://github.com/wooorm/emoticon)
+  — info on ASCII emoticons
+* [`wooorm/strip-skin-tone`](https://github.com/wooorm/strip-skin-tone)
+  — strip skin-tones from emoji
+* [`wooorm.com/checkmoji`](https://wooorm.com/checkmoji/)
+  — check emoji across platforms
 
 ## Contribute
 
