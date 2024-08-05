@@ -89,7 +89,8 @@ export const emoticon = [
       "='|",
       "='-(",
       "='-[",
-      "='-|"
+      "='-|",
+      'T-T'
     ]
   },
   {
@@ -260,7 +261,7 @@ export const emoticon = [
     name: 'rage',
     emoji: '😡',
     tags: ['angry'],
-    description: 'pouting face',
+    description: 'enraged face',
     emoticons: [':@', ':-@', '=@', '=-@']
   },
   {
