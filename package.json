@@ -4,13 +4,12 @@
   "description": "Info on ASCII emoticons",
   "license": "MIT",
   "keywords": [
+    "alias",
     "emoticon",
-    "unicode",
     "name",
     "shortcode",
     "tag",
-    "alias",
-    "name"
+    "unicode"
   ],
   "repository": "wooorm/emoticon",
   "bugs": "https://github.com/wooorm/emoticon/issues",
@@ -44,47 +43,46 @@
     "xo": "^0.59.0"
   },
   "scripts": {
-    "prepack": "npm run build && npm run format",
-    "generate": "node --conditions development script/build-data.js && node --conditions development script/build-support.js",
     "build": "tsc --build --clean && tsc --build && type-coverage",
-    "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
+    "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
+    "generate": "node --conditions development script/build-data.js && node --conditions development script/build-support.js",
     "test-api": "node --conditions development test.js",
     "test-coverage": "c8 --check-coverage --100 --reporter lcov npm run test-api",
     "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
   },
   "prettier": {
-    "tabWidth": 2,
-    "useTabs": false,
-    "singleQuote": true,
     "bracketSpacing": false,
     "semi": false,
-    "trailingComma": "none"
-  },
-  "xo": {
-    "prettier": true,
-    "rules": {
-      "unicorn/prefer-string-replace-all": "off"
-    }
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
   },
   "remarkConfig": {
     "plugins": [
-      "preset-wooorm",
+      "remark-preset-wooorm",
       [
-        "gfm",
+        "remark-gfm",
         {
           "tablePipeAlign": false
         }
       ],
       [
-        "lint-table-pipe-alignment",
+        "remark-lint-table-pipe-alignment",
         false
       ]
     ]
   },
   "typeCoverage": {
     "atLeast": 100,
+    "ignoreCatch": true,
     "detail": true,
-    "strict": true,
-    "ignoreCatch": true
+    "strict": true
+  },
+  "xo": {
+    "prettier": true,
+    "rules": {
+      "unicorn/prefer-string-replace-all": "off"
+    }
   }
 }
