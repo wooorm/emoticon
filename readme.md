@@ -1,9 +1,9 @@
 # emoticon
 
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Size][size-badge]][size]
+[![Build][badge-build-image]][badge-build-url]
+[![Coverage][badge-coverage-image]][badge-coverage-url]
+[![Downloads][badge-downloads-image]][badge-downloads-url]
+[![Size][badge-size-image]][badge-size-url]
 
 List of emoticons.
 
@@ -35,20 +35,20 @@ for example to figure out which text emoticons map to what emoji.
 
 ## Install
 
-This package is [ESM only][esm].
-In Node.js (version 14.14+, 16.0+), install with [npm][]:
+This package is [ESM only][github-gist-esm].
+In Node.js (version 14.14+), install with [npm][npm-install]:
 
 ```sh
 npm install emoticon
 ```
 
-In Deno with [`esm.sh`][esmsh]:
+In Deno with [`esm.sh`][esm-sh]:
 
 ```js
 import {emoticon} from 'https://esm.sh/emoticon@4'
 ```
 
-In browsers with [`esm.sh`][esmsh]:
+In browsers with [`esm.sh`][esm-sh]:
 
 ```html
 <script type="module">
@@ -67,34 +67,39 @@ console.log(emoticon.slice(0, 3))
 Yields:
 
 ```js
-[ { name: 'angry',
-    emoji: '😠',
-    tags: [ 'mad', 'annoyed' ],
+[
+  {
     description: 'angry face',
-    emoticons:
-     [ '>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-[' ] },
-  { name: 'blush',
-    emoji: '😊',
-    tags: [ 'proud' ],
+    emoji: '😠',
+    emoticons: [
+      '>:(',  '>:[',
+      '>:-(', '>:-[',
+      '>=(',  '>=[',
+      '>=-(', '>=-['
+    ],
+    name: 'angry',
+    tags: [ 'mad', 'annoyed' ]
+  },
+  {
     description: 'smiling face with smiling eyes',
-    emoticons:
-     [ ':")',
-       ':"]',
-       ':"D',
-       ':-")',
-       ':-"]',
-       ':-"D',
-       '=")',
-       '="]',
-       '="D',
-       '=-")',
-       '=-"]',
-       '=-"D' ] },
-  { name: 'broken_heart',
-    emoji: '💔',
-    tags: [],
+    emoji: '😊',
+    emoticons: [
+      ':")',  ':"]',  ':"D',
+      ':-")', ':-"]', ':-"D',
+      '=")',  '="]',  '="D',
+      '=-")', '=-"]', '=-"D'
+    ],
+    name: 'blush',
+    tags: [ 'proud' ]
+  },
+  {
     description: 'broken heart',
-    emoticons: [ '<\\3', '</3' ] } ]
+    emoji: '💔',
+    emoticons: [ '<\\3', '</3' ],
+    name: 'broken_heart',
+    tags: []
+  }
+]
 ```
 
 ## API
@@ -107,20 +112,20 @@ There is no default export.
 List of emoticons (`Array<Emoticon>`), where each entry has the following
 fields:
 
-* `name` (`string`)
-  — name of an emoticon (preferred name from [`wooorm/gemoji`][gemoji])
+* `description` (`string`)
+  — associated description (from [`wooorm/gemoji`][github-gemoji])
 * `emoji` (`string`)
   — corresponding emoji
-* `tags` (`Array<string>`)
-  — associated tags (from [`wooorm/gemoji`][gemoji])
-* `description` (`string`)
-  — associated description (from [`wooorm/gemoji`][gemoji])
 * `emoticons` (`Array<string>`)
   — ASCII emoticons
+* `name` (`string`)
+  — name of an emoticon (preferred name from [`wooorm/gemoji`][github-gemoji])
+* `tags` (`Array<string>`)
+  — associated tags (from [`wooorm/gemoji`][github-gemoji])
 
 ## List of emoticons
 
-See [`support.md`][support].
+See [`support.md`][file-support].
 
 ## Types
 
@@ -130,7 +135,7 @@ It exports an additional type `Emoticon`.
 ## Compatibility
 
 This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 14.14+ and 16.0+.
+As of now, that is Node.js 14.14+.
 It also works in Deno and modern browsers.
 
 ## Security
@@ -139,7 +144,7 @@ This package is safe.
 
 ## Related
 
-* [`wooorm/gemoji`][gemoji]
+* [`wooorm/gemoji`][github-gemoji]
   — info on gemoji (GitHub emoji)
 * [`words/emoji-emotion`](https://github.com/words/emoji-emotion)
   — list of emoji rated for valence
@@ -153,44 +158,44 @@ This package is safe.
 ## Contribute
 
 Yes please!
-See [How to Contribute to Open Source][contribute].
+See [How to Contribute to Open Source][open-source-guide-contribute].
 
 ## License
 
-[MIT][license] © [Titus Wormer][author]
+[MIT][file-license] © [Titus Wormer][wooorm]
 
 <!-- Definitions -->
 
-[build-badge]: https://github.com/wooorm/emoticon/workflows/main/badge.svg
+[badge-build-image]: https://github.com/wooorm/emoticon/workflows/main/badge.svg
 
-[build]: https://github.com/wooorm/emoticon/actions
+[badge-build-url]: https://github.com/wooorm/emoticon/actions
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/wooorm/emoticon.svg
+[badge-coverage-image]: https://img.shields.io/codecov/c/github/wooorm/emoticon.svg
 
-[coverage]: https://codecov.io/github/wooorm/emoticon
+[badge-coverage-url]: https://codecov.io/github/wooorm/emoticon
 
-[downloads-badge]: https://img.shields.io/npm/dm/emoticon.svg
+[badge-downloads-image]: https://img.shields.io/npm/dm/emoticon.svg
 
-[downloads]: https://www.npmjs.com/package/emoticon
+[badge-downloads-url]: https://www.npmjs.com/package/emoticon
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/emoticon.svg
+[badge-size-image]: https://img.shields.io/bundlejs/size/emoticon
 
-[size]: https://bundlephobia.com/result?p=emoticon
+[badge-size-url]: https://bundlejs.com/?q=emoticon
 
-[npm]: https://docs.npmjs.com/cli/install
+[esm-sh]: https://esm.sh
 
-[esmsh]: https://esm.sh
+[github-gist-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 
-[license]: license
+[file-license]: license
 
-[author]: https://wooorm.com
+[file-support]: support.md
 
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+[npm-install]: https://docs.npmjs.com/cli/install
 
 [typescript]: https://www.typescriptlang.org
 
-[contribute]: https://opensource.guide/how-to-contribute/
+[wooorm]: https://wooorm.com
 
-[support]: support.md
+[github-gemoji]: https://github.com/wooorm/gemoji
 
-[gemoji]: https://github.com/wooorm/gemoji
+[open-source-guide-contribute]: https://opensource.guide/how-to-contribute/
