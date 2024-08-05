@@ -21,7 +21,7 @@ await fs.writeFile(
     'Note that you need a browser capable of viewing emoji to make sense of',
     'the first column!',
     '',
-    markdownTable(data, {align: 'c', alignDelimiters: false}),
+    markdownTable(data, {alignDelimiters: false, align: 'c'}),
     ''
   ].join('\n')
 )

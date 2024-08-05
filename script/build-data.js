@@ -1,98 +1,90 @@
-// @ts-check
-
 /**
  * @typedef Emoticon
- * @property {string} name
- * @property {string} emoji
- * @property {Array<string>} tags
  * @property {string} description
- * @property {Array<string>} emoticons
+ * @property {string} emoji
+ * @property {ReadonlyArray<string>} emoticons
+ * @property {string} name
+ * @property {ReadonlyArray<string>} tags
  */
 
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import {gemoji} from 'gemoji'
 
-/** @type {Record<string, Array<Array<string>>>} */
+/** @type {Record<string, ReadonlyArray<ReadonlyArray<string>>>} */
 const schema = JSON.parse(String(await fs.readFile('schema.json')))
-/** @type {Record<string, string|Array<string>>} */
+/** @type {Record<string, ReadonlyArray<string> | string>} */
 const alias = JSON.parse(String(await fs.readFile('alias.json')))
 
-const own = {}.hasOwnProperty
+/** @type {Array<Emoticon>} */
+const data = []
+// Check if emoticons are classified multiple times.
+/** @type {Map<string, string>} */
+const known = new Map()
 
 // Get the emoticon representation of emoticons.
-/** @type {Array<Emoticon>} */
-const data = Object.keys(schema)
-  .map((name) => ({
-    name,
-    info: gemoji.find((d) => d.names.includes(name)),
-    structure: schema[name]
-  }))
-  .map((context) => {
-    assert(context.info, 'expected matching gemoji for `' + context.name + '`')
-    const structure = context.structure
-
-    const result = structure
-      .flatMap((faceStructure) => {
-        const flatStructure = faceStructure.map((key) => flatten([key]))
-        /** @type {Array<string>|undefined} */
-        let result
-
-        while (flatStructure[1]) {
-          result = unpack(flatStructure)
-          flatStructure.shift()
-          flatStructure[0] = result
-        }
-
-        return result ?? []
-      })
-      .filter((emoticon) => {
-        // Remove some dangerous emoticons.
-        if (
-          (/^[a-zA-Z]+$/.test(emoticon) &&
-            (emoticon.toUpperCase() === emoticon ||
-              emoticon.toLowerCase() === emoticon)) ||
-          /([\s\S])\1+/g.test(emoticon) ||
-          emoticon === '=-'
-        ) {
-          console.log('Removing dangerous/unused emoticon:', emoticon)
-          return false
-        }
-
-        return true
-      })
-
-    return {
-      name: context.name,
-      emoji: context.info.emoji,
-      tags: context.info.tags,
-      description: context.info.description,
-      emoticons: result
-    }
+for (const [name, structure] of Object.entries(schema)) {
+  const info = gemoji.find(function (d) {
+    return d.names.includes(name)
   })
-  .filter((info) => info.emoticons.length > 0)
+  assert(info, 'expected matching gemoji for `' + name + '`')
 
-// Detect if emoticons are classified multiple times.
-/** @type {Record<string, string>} */
-const known = {}
-/** @type {Emoticon} */
-let info
-/** @type {string} */
-let emoticon
+  /** @type {Array<string>} */
+  const emoticons = []
 
-for (info of data) {
-  for (emoticon of info.emoticons) {
-    if (own.call(known, emoticon)) {
-      console.log(
-        'Duplicate emoticon `%s` in `%s` and `%s`',
-        emoticon,
-        info.name,
-        known[emoticon]
-      )
+  for (const faceStructure of structure) {
+    const flatStructure = faceStructure.map(function (key) {
+      return flatten([key])
+    })
+    /** @type {Array<string> | undefined} */
+    let result
+
+    while (flatStructure[1]) {
+      result = unpack(flatStructure)
+      flatStructure.shift()
+      flatStructure[0] = result
     }
 
-    known[emoticon] = info.name
+    if (!result) continue
+
+    for (const emoticon of result) {
+      // Remove some dangerous emoticons.
+      if (
+        (/^[a-zA-Z]+$/.test(emoticon) &&
+          (emoticon.toUpperCase() === emoticon ||
+            emoticon.toLowerCase() === emoticon)) ||
+        /([\s\S])\1+/g.test(emoticon) ||
+        emoticon === '=-'
+      ) {
+        console.log('Removing dangerous/unused emoticon:', emoticon)
+        continue
+      }
+
+      const current = known.get(emoticon)
+
+      if (current) {
+        console.log(
+          'Duplicate emoticon `%s` in `%s` and `%s`',
+          emoticon,
+          name,
+          current
+        )
+      }
+
+      known.set(emoticon, name)
+      emoticons.push(emoticon)
+    }
   }
+
+  if (emoticons.length === 0) continue
+
+  data.push({
+    description: info.description,
+    emoji: info.emoji,
+    emoticons,
+    name,
+    tags: info.tags
+  })
 }
 
 // Write.
@@ -102,16 +94,16 @@ await fs.writeFile(
     '/**',
     ' * @typedef Emoticon',
     ' *   Info on an emoticon.',
-    ' * @property {string} name',
-    ' *   Name of an emoticon (preferred name from `wooorm/gemoji`).',
-    ' * @property {string} emoji',
-    ' *   Corresponding emoji.',
-    ' * @property {Array<string>} tags',
-    ' *   Associated tags (from `wooorm/gemoji`).',
     ' * @property {string} description',
     ' *   Associated description (from `wooorm/gemoji`).',
+    ' * @property {string} emoji',
+    ' *   Corresponding emoji.',
     ' * @property {Array<string>} emoticons',
     ' *   ASCII emoticons.',
+    ' * @property {string} name',
+    ' *   Name of an emoticon (preferred name from `wooorm/gemoji`).',
+    ' * @property {Array<string>} tags',
+    ' *   Associated tags (from `wooorm/gemoji`).',
     ' */',
     '',
     '/**',
@@ -119,13 +111,36 @@ await fs.writeFile(
     ' *',
     ' * @type {Array<Emoticon>}',
     ' */',
-    'export const emoticon = ' + JSON.stringify(data, null, 2),
+    'export const emoticon = ' + JSON.stringify(data, undefined, 2),
     ''
   ].join('\n')
 )
 
 /**
- * @param {Array<string>|Array<Array<string>>} value
+ * Flatten facial parts.
+ *
+ * @param {ReadonlyArray<string> | string} keys
+ */
+function flatten(keys) {
+  /** @type {Array<string>} */
+  const result = []
+  let index = -1
+
+  while (++index < keys.length) {
+    if (Object.hasOwn(alias, keys[index])) {
+      result.push(...flatten(alias[keys[index]]))
+    } else if (Array.isArray(keys[index])) {
+      result.push(...keys[index])
+    } else {
+      result.push(keys[index])
+    }
+  }
+
+  return result
+}
+
+/**
+ * @param {ReadonlyArray<ReadonlyArray<string>> | ReadonlyArray<string>} value
  */
 function unpack(value) {
   /** @type {Array<string>} */
@@ -138,28 +153,6 @@ function unpack(value) {
   for (first of value[0]) {
     for (second of value[1]) {
       result.push(first + second)
-    }
-  }
-
-  return result
-}
-
-/**
- * Flatten facial parts.
- * @param {string|Array<string>} keys
- */
-function flatten(keys) {
-  /** @type {Array<string>} */
-  const result = []
-  let index = -1
-
-  while (++index < keys.length) {
-    if (own.call(alias, keys[index])) {
-      result.push(...flatten(alias[keys[index]]))
-    } else if (Array.isArray(keys[index])) {
-      result.push(...keys[index])
-    } else {
-      result.push(keys[index])
     }
   }
 

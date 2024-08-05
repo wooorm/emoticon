@@ -1,16 +1,16 @@
 /**
  * @typedef Emoticon
  *   Info on an emoticon.
- * @property {string} name
- *   Name of an emoticon (preferred name from `wooorm/gemoji`).
- * @property {string} emoji
- *   Corresponding emoji.
- * @property {Array<string>} tags
- *   Associated tags (from `wooorm/gemoji`).
  * @property {string} description
  *   Associated description (from `wooorm/gemoji`).
+ * @property {string} emoji
+ *   Corresponding emoji.
  * @property {Array<string>} emoticons
  *   ASCII emoticons.
+ * @property {string} name
+ *   Name of an emoticon (preferred name from `wooorm/gemoji`).
+ * @property {Array<string>} tags
+ *   Associated tags (from `wooorm/gemoji`).
  */
 
 /**
@@ -20,17 +20,15 @@
  */
 export const emoticon = [
   {
-    name: 'angry',
-    emoji: '😠',
-    tags: ['mad', 'annoyed'],
     description: 'angry face',
-    emoticons: ['>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-[']
+    emoji: '😠',
+    emoticons: ['>:(', '>:[', '>:-(', '>:-[', '>=(', '>=[', '>=-(', '>=-['],
+    name: 'angry',
+    tags: ['mad', 'annoyed']
   },
   {
-    name: 'blush',
-    emoji: '😊',
-    tags: ['proud'],
     description: 'smiling face with smiling eyes',
+    emoji: '😊',
     emoticons: [
       ':")',
       ':"]',
@@ -44,27 +42,27 @@ export const emoticon = [
       '=-")',
       '=-"]',
       '=-"D'
-    ]
+    ],
+    name: 'blush',
+    tags: ['proud']
   },
   {
-    name: 'broken_heart',
-    emoji: '💔',
-    tags: [],
     description: 'broken heart',
-    emoticons: ['<\\3', '</3']
+    emoji: '💔',
+    emoticons: ['<\\3', '</3'],
+    name: 'broken_heart',
+    tags: []
   },
   {
-    name: 'confused',
-    emoji: '😕',
-    tags: [],
     description: 'confused face',
-    emoticons: [':/', ':\\', ':-/', ':-\\', '=/', '=\\', '=-/', '=-\\']
+    emoji: '😕',
+    emoticons: [':/', ':\\', ':-/', ':-\\', '=/', '=\\', '=-/', '=-\\'],
+    name: 'confused',
+    tags: []
   },
   {
-    name: 'cry',
-    emoji: '😢',
-    tags: ['sad', 'tear'],
     description: 'crying face',
+    emoji: '😢',
     emoticons: [
       ':,(',
       ':,[',
@@ -91,34 +89,34 @@ export const emoticon = [
       "='-[",
       "='-|",
       'T-T'
-    ]
+    ],
+    name: 'cry',
+    tags: ['sad', 'tear']
   },
   {
-    name: 'frowning',
-    emoji: '😦',
-    tags: [],
     description: 'frowning face with open mouth',
-    emoticons: [':(', ':[', ':-(', ':-[', '=(', '=[', '=-(', '=-[']
+    emoji: '😦',
+    emoticons: [':(', ':[', ':-(', ':-[', '=(', '=[', '=-(', '=-['],
+    name: 'frowning',
+    tags: []
   },
   {
-    name: 'heart',
-    emoji: '❤️',
-    tags: ['love'],
     description: 'red heart',
-    emoticons: ['<3']
+    emoji: '❤️',
+    emoticons: ['<3'],
+    name: 'heart',
+    tags: ['love']
   },
   {
-    name: 'imp',
-    emoji: '👿',
-    tags: ['angry', 'devil', 'evil', 'horns'],
     description: 'angry face with horns',
-    emoticons: [']:(', ']:[', ']:-(', ']:-[', ']=(', ']=[', ']=-(', ']=-[']
+    emoji: '👿',
+    emoticons: [']:(', ']:[', ']:-(', ']:-[', ']=(', ']=[', ']=-(', ']=-['],
+    name: 'imp',
+    tags: ['angry', 'devil', 'evil', 'horns']
   },
   {
-    name: 'innocent',
-    emoji: '😇',
-    tags: ['angel'],
     description: 'smiling face with halo',
+    emoji: '😇',
     emoticons: [
       'o:)',
       'o:]',
@@ -156,13 +154,13 @@ export const emoticon = [
       '0=-)',
       '0=-]',
       '0=-D'
-    ]
+    ],
+    name: 'innocent',
+    tags: ['angel']
   },
   {
-    name: 'joy',
-    emoji: '😂',
-    tags: ['tears'],
     description: 'face with tears of joy',
+    emoji: '😂',
     emoticons: [
       ':,)',
       ':,]',
@@ -188,20 +186,20 @@ export const emoticon = [
       "='-)",
       "='-]",
       "='-D"
-    ]
+    ],
+    name: 'joy',
+    tags: ['tears']
   },
   {
-    name: 'kissing',
-    emoji: '😗',
-    tags: [],
     description: 'kissing face',
-    emoticons: [':*', ':-*', '=*', '=-*']
+    emoji: '😗',
+    emoticons: [':*', ':-*', '=*', '=-*'],
+    name: 'kissing',
+    tags: []
   },
   {
-    name: 'laughing',
-    emoji: '😆',
-    tags: ['happy', 'haha'],
     description: 'grinning squinting face',
+    emoji: '😆',
     emoticons: [
       'x)',
       'x]',
@@ -214,34 +212,45 @@ export const emoticon = [
       'X-)',
       'X-]',
       'X-D'
-    ]
+    ],
+    name: 'laughing',
+    tags: ['happy', 'haha']
   },
   {
-    name: 'man',
-    emoji: '👨',
-    tags: ['mustache', 'father', 'dad'],
     description: 'man',
-    emoticons: [':3', ':-3', '=3', '=-3', ';3', ';-3', 'x3', 'x-3', 'X3', 'X-3']
+    emoji: '👨',
+    emoticons: [
+      ':3',
+      ':-3',
+      '=3',
+      '=-3',
+      ';3',
+      ';-3',
+      'x3',
+      'x-3',
+      'X3',
+      'X-3'
+    ],
+    name: 'man',
+    tags: ['mustache', 'father', 'dad']
   },
   {
-    name: 'neutral_face',
-    emoji: '😐',
-    tags: ['meh'],
     description: 'neutral face',
-    emoticons: [':|', ':-|', '=|', '=-|']
+    emoji: '😐',
+    emoticons: [':|', ':-|', '=|', '=-|'],
+    name: 'neutral_face',
+    tags: ['meh']
   },
   {
-    name: 'no_mouth',
-    emoji: '😶',
-    tags: ['mute', 'silence'],
     description: 'face without mouth',
-    emoticons: [':-']
+    emoji: '😶',
+    emoticons: [':-'],
+    name: 'no_mouth',
+    tags: ['mute', 'silence']
   },
   {
-    name: 'open_mouth',
-    emoji: '😮',
-    tags: ['surprise', 'impressed', 'wow'],
     description: 'face with open mouth',
+    emoji: '😮',
     emoticons: [
       ':o',
       ':O',
@@ -255,34 +264,34 @@ export const emoticon = [
       '=-o',
       '=-O',
       '=-0'
-    ]
+    ],
+    name: 'open_mouth',
+    tags: ['surprise', 'impressed', 'wow']
   },
   {
-    name: 'rage',
-    emoji: '😡',
-    tags: ['angry'],
     description: 'enraged face',
-    emoticons: [':@', ':-@', '=@', '=-@']
+    emoji: '😡',
+    emoticons: [':@', ':-@', '=@', '=-@'],
+    name: 'rage',
+    tags: ['angry']
   },
   {
-    name: 'smile',
-    emoji: '😄',
-    tags: ['happy', 'joy', 'laugh', 'pleased'],
     description: 'grinning face with smiling eyes',
-    emoticons: [':D', ':-D', '=D', '=-D']
+    emoji: '😄',
+    emoticons: [':D', ':-D', '=D', '=-D'],
+    name: 'smile',
+    tags: ['happy', 'joy', 'laugh', 'pleased']
   },
   {
-    name: 'smiley',
-    emoji: '😃',
-    tags: ['happy', 'joy', 'haha'],
     description: 'grinning face with big eyes',
-    emoticons: [':)', ':]', ':-)', ':-]', '=)', '=]', '=-)', '=-]']
+    emoji: '😃',
+    emoticons: [':)', ':]', ':-)', ':-]', '=)', '=]', '=-)', '=-]'],
+    name: 'smiley',
+    tags: ['happy', 'joy', 'haha']
   },
   {
-    name: 'smiling_imp',
-    emoji: '😈',
-    tags: ['devil', 'evil', 'horns'],
     description: 'smiling face with horns',
+    emoji: '😈',
     emoticons: [
       ']:)',
       ']:]',
@@ -296,13 +305,13 @@ export const emoticon = [
       ']=-)',
       ']=-]',
       ']=-D'
-    ]
+    ],
+    name: 'smiling_imp',
+    tags: ['devil', 'evil', 'horns']
   },
   {
-    name: 'sob',
-    emoji: '😭',
-    tags: ['sad', 'cry', 'bawling'],
     description: 'loudly crying face',
+    emoji: '😭',
     emoticons: [
       ":,'(",
       ":,'[",
@@ -320,13 +329,13 @@ export const emoticon = [
       "=',[",
       "=',-(",
       "=',-["
-    ]
+    ],
+    name: 'sob',
+    tags: ['sad', 'cry', 'bawling']
   },
   {
-    name: 'stuck_out_tongue',
-    emoji: '😛',
-    tags: [],
     description: 'face with tongue',
+    emoji: '😛',
     emoticons: [
       ':p',
       ':P',
@@ -340,27 +349,27 @@ export const emoticon = [
       '=-p',
       '=-P',
       '=-d'
-    ]
+    ],
+    name: 'stuck_out_tongue',
+    tags: []
   },
   {
-    name: 'stuck_out_tongue_closed_eyes',
-    emoji: '😝',
-    tags: ['prank'],
     description: 'squinting face with tongue',
-    emoticons: ['xP', 'x-p', 'x-P', 'x-d', 'Xp', 'Xd', 'X-p', 'X-P', 'X-d']
+    emoji: '😝',
+    emoticons: ['xP', 'x-p', 'x-P', 'x-d', 'Xp', 'Xd', 'X-p', 'X-P', 'X-d'],
+    name: 'stuck_out_tongue_closed_eyes',
+    tags: ['prank']
   },
   {
-    name: 'stuck_out_tongue_winking_eye',
-    emoji: '😜',
-    tags: ['prank', 'silly'],
     description: 'winking face with tongue',
-    emoticons: [';p', ';P', ';d', ';-p', ';-P', ';-d']
+    emoji: '😜',
+    emoticons: [';p', ';P', ';d', ';-p', ';-P', ';-d'],
+    name: 'stuck_out_tongue_winking_eye',
+    tags: ['prank', 'silly']
   },
   {
-    name: 'sunglasses',
-    emoji: '😎',
-    tags: ['cool'],
     description: 'smiling face with sunglasses',
+    emoji: '😎',
     emoticons: [
       '8)',
       '8]',
@@ -373,13 +382,13 @@ export const emoticon = [
       'B-)',
       'B-]',
       'B-D'
-    ]
+    ],
+    name: 'sunglasses',
+    tags: ['cool']
   },
   {
-    name: 'sweat',
-    emoji: '😓',
-    tags: [],
     description: 'downcast face with sweat',
+    emoji: '😓',
     emoticons: [
       ',:(',
       ',:[',
@@ -397,13 +406,13 @@ export const emoticon = [
       "'=[",
       "'=-(",
       "'=-["
-    ]
+    ],
+    name: 'sweat',
+    tags: []
   },
   {
-    name: 'sweat_smile',
-    emoji: '😅',
-    tags: ['hot'],
     description: 'grinning face with sweat',
+    emoji: '😅',
     emoticons: [
       ',:)',
       ',:]',
@@ -429,13 +438,13 @@ export const emoticon = [
       "'=-)",
       "'=-]",
       "'=-D"
-    ]
+    ],
+    name: 'sweat_smile',
+    tags: ['hot']
   },
   {
-    name: 'unamused',
-    emoji: '😒',
-    tags: ['meh'],
     description: 'unamused face',
+    emoji: '😒',
     emoticons: [
       ':$',
       ':s',
@@ -457,13 +466,15 @@ export const emoticon = [
       '=-z',
       '=-S',
       '=-Z'
-    ]
+    ],
+    name: 'unamused',
+    tags: ['meh']
   },
   {
-    name: 'wink',
-    emoji: '😉',
-    tags: ['flirt'],
     description: 'winking face',
-    emoticons: [';)', ';]', ';D', ';-)', ';-]', ';-D']
+    emoji: '😉',
+    emoticons: [';)', ';]', ';D', ';-)', ';-]', ';-D'],
+    name: 'wink',
+    tags: ['flirt']
   }
 ]
